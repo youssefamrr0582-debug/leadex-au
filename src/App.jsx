@@ -4,7 +4,7 @@ export default function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setTimeout(() => setLoading(false), 700);
+    setTimeout(() => setLoading(false), 800);
   }, []);
 
   if (loading) {
@@ -31,24 +31,27 @@ export default function App() {
       {/* HERO */}
       <div style={styles.hero}>
         <h1 style={styles.h1}>
-          Stop Chasing Leads. Start Closing Deals.
+          Stop Chasing Leads.<br /> Start Closing Deals.
         </h1>
 
-        <p style={styles.p}>
-          We help B2B companies connect with real decision makers and book qualified meetings.
+        <p style={styles.sub}>
+          We help B2B companies connect with real decision-makers and book qualified meetings that convert into revenue.
         </p>
 
-        <button style={styles.button}>
-          Get Started
-        </button>
+        <button style={styles.cta}>Get Started</button>
       </div>
 
       {/* SERVICES */}
       <div id="services" style={styles.section}>
-        <h2>What We Do</h2>
+        <h2 style={styles.title}>What We Do</h2>
 
         <div style={styles.grid}>
-          {["Lead Generation", "Outbound Calls", "Appointment Setting", "Qualified Meetings"].map((item) => (
+          {[
+            "Lead Generation",
+            "Outbound Calls",
+            "Appointment Setting",
+            "Qualified Meetings"
+          ].map((item) => (
             <div key={item} style={styles.card}>
               {item}
             </div>
@@ -57,25 +60,23 @@ export default function App() {
       </div>
 
       {/* CONTACT */}
-      <div id="contact" style={styles.sectionDark}>
-        <h2>Contact Us</h2>
+      <div id="contact" style={styles.contact}>
+        <h2 style={styles.title}>Contact Us</h2>
 
-        <p>info@lea-dex.com</p>
-        <p>0272651399</p>
+        <p style={styles.info}>info@lea-dex.com</p>
+        <p style={styles.info}>0272651399</p>
 
         <div style={styles.form}>
           <input placeholder="Name" style={styles.input} />
           <input placeholder="Email" style={styles.input} />
           <textarea placeholder="Message" style={styles.textarea} />
 
-          <button style={styles.button}>
-            Send
-          </button>
+          <button style={styles.cta}>Send Message</button>
         </div>
       </div>
 
       <div style={styles.footer}>
-        © LeadEX
+        © {new Date().getFullYear()} LeadEX
       </div>
 
     </div>
@@ -86,7 +87,7 @@ export default function App() {
 const styles = {
   page: {
     fontFamily: "Arial",
-    background: "#f7f4ef",
+    background: "linear-gradient(180deg, #f7f4ef, #ffffff)",
     color: "#222",
   },
 
@@ -98,15 +99,15 @@ const styles = {
   },
 
   logo: {
+    fontSize: "42px",
     color: "#ff7a00",
-    fontSize: "40px",
     fontWeight: "bold",
   },
 
   nav: {
     display: "flex",
     justifyContent: "space-between",
-    padding: "15px 25px",
+    padding: "18px 30px",
     background: "#fff",
     borderBottom: "1px solid #eee",
     position: "sticky",
@@ -114,92 +115,112 @@ const styles = {
   },
 
   logoSmall: {
-    color: "#ff7a00",
     fontWeight: "bold",
+    color: "#ff7a00",
+    fontSize: "18px",
   },
 
   links: {
     display: "flex",
-    gap: "15px",
+    gap: "20px",
     fontSize: "14px",
   },
 
   hero: {
     textAlign: "center",
-    padding: "70px 20px",
+    padding: "90px 20px",
   },
 
   h1: {
-    fontSize: "36px",
-    marginBottom: "10px",
+    fontSize: "42px",
+    marginBottom: "15px",
+    lineHeight: "1.2",
   },
 
-  p: {
-    maxWidth: "600px",
+  sub: {
+    maxWidth: "650px",
     margin: "0 auto",
     color: "#555",
+    fontSize: "16px",
+  },
+
+  cta: {
+    marginTop: "25px",
+    background: "#ff7a00",
+    color: "#fff",
+    border: "none",
+    padding: "12px 25px",
+    borderRadius: "30px",
+    cursor: "pointer",
+    fontWeight: "bold",
+    boxShadow: "0 8px 20px rgba(255,122,0,0.25)",
   },
 
   section: {
-    padding: "50px 20px",
+    padding: "70px 20px",
     textAlign: "center",
   },
 
-  sectionDark: {
-    padding: "50px 20px",
-    textAlign: "center",
-    background: "#fff",
+  title: {
+    fontSize: "28px",
+    marginBottom: "25px",
   },
 
   grid: {
     display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))",
-    gap: "10px",
-    marginTop: "20px",
+    gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
+    gap: "15px",
+    maxWidth: "800px",
+    margin: "0 auto",
   },
 
   card: {
     background: "#fff",
-    padding: "15px",
-    borderRadius: "10px",
+    padding: "18px",
+    borderRadius: "14px",
     border: "1px solid #eee",
+    boxShadow: "0 5px 15px rgba(0,0,0,0.05)",
+  },
+
+  contact: {
+    padding: "70px 20px",
+    textAlign: "center",
+    background: "#fff",
+  },
+
+  info: {
+    color: "#555",
+    margin: "5px 0",
   },
 
   form: {
-    marginTop: "20px",
-    maxWidth: "350px",
-    margin: "0 auto",
+    marginTop: "25px",
+    maxWidth: "380px",
+    marginLeft: "auto",
+    marginRight: "auto",
     display: "flex",
     flexDirection: "column",
-    gap: "10px",
+    gap: "12px",
   },
 
   input: {
-    padding: "10px",
-    border: "1px solid #ccc",
-    borderRadius: "5px",
+    padding: "12px",
+    borderRadius: "8px",
+    border: "1px solid #ddd",
+    outline: "none",
   },
 
   textarea: {
-    padding: "10px",
-    height: "90px",
-    border: "1px solid #ccc",
-    borderRadius: "5px",
-  },
-
-  button: {
-    background: "#ff7a00",
-    color: "#fff",
-    border: "none",
     padding: "12px",
-    borderRadius: "20px",
-    cursor: "pointer",
+    height: "100px",
+    borderRadius: "8px",
+    border: "1px solid #ddd",
   },
 
   footer: {
     textAlign: "center",
-    padding: "15px",
+    padding: "20px",
     fontSize: "12px",
-    color: "#777",
+    color: "#888",
   },
 };
