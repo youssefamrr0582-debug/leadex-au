@@ -1,12 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>LeadEX</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <title>LeadEX</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-[#f7f4ef] text-[#2b2b2b] font-sans">
+
+  <!-- NAV -->
+  <div class="flex justify-between items-center px-8 py-5 border-b bg-white">
+    <div class="text-2xl font-bold text-orange-500">LeadEX</div>
+    <div class="hidden md:flex gap-6 text-sm">
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div class="text-center px-8 py-20">
+    <h1 class="text-4xl md:text-5xl font-bold">
+      Stop Chasing Leads. Start Closing Deals.
+    </h1>
+
+    <p class="mt-6 text-gray-600 max-w-2xl mx-auto">
+      We help B2B companies connect with real decision makers and book qualified meetings.
+    </p>
+
+    <a href="#contact" class="inline-block mt-8 bg-orange-500 text-white px-6 py-3 rounded-full">
+      Get Started
+    </a>
+  </div>
+
+  <!-- SERVICES -->
+  <div id="services" class="px-8 py-16 bg-white">
+    <h2 class="text-2xl font-bold text-center">What We Do</h2>
+
+    <div class="grid md:grid-cols-2 gap-4 mt-10 max-w-4xl mx-auto">
+      <div class="p-4 bg-[#f7f4ef] rounded">Lead Generation</div>
+      <div class="p-4 bg-[#f7f4ef] rounded">Outbound Calls</div>
+      <div class="p-4 bg-[#f7f4ef] rounded">Appointment Setting</div>
+      <div class="p-4 bg-[#f7f4ef] rounded">Qualified Meetings</div>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <div id="contact" class="px-8 py-20 text-center">
+    <h2 class="text-2xl font-bold">Contact Us</h2>
+
+    <p class="mt-4">info@lea-dex.com</p>
+    <p>0272651399</p>
+
+    <div class="mt-8 max-w-md mx-auto space-y-3">
+      <input class="w-full p-3 border rounded" placeholder="Name">
+      <input class="w-full p-3 border rounded" placeholder="Email">
+      <textarea class="w-full p-3 border rounded h-28" placeholder="Message"></textarea>
+
+      <button class="w-full bg-orange-500 text-white py-3 rounded">
+        Send
+      </button>
+    </div>
+  </div>
+
+  <div class="text-center py-6 text-sm text-gray-500">
+    © LeadEX
+  </div>
+
+</body>
 </html>
