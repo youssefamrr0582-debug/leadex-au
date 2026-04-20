@@ -9,8 +9,8 @@ export default function App() {
 
   if (loading) {
     return (
-      <div style={{ display: "flex", height: "100vh", justifyContent: "center", alignItems: "center" }}>
-        <h1 style={{ color: "#ff7a00" }}>LeadEX</h1>
+      <div style={styles.center}>
+        <h1 style={styles.logo}>LeadEX</h1>
       </div>
     );
   }
@@ -18,90 +18,71 @@ export default function App() {
   return (
     <div style={styles.page}>
 
+      {/* NAV */}
       <div style={styles.nav}>
-        <div style={styles.logo}>LeadEX</div>
+        <div style={styles.logoSmall}>LeadEX</div>
+
         <div style={styles.links}>
-          <a href="#services">What We Do</a>
-          <a href="#process">How It Works</a>
-          <a href="#industries">Industries</a>
+          <a href="#services">Services</a>
           <a href="#contact">Contact</a>
         </div>
       </div>
 
+      {/* HERO */}
       <div style={styles.hero}>
-        <h1>Stop Chasing Leads. Start Closing Deals.</h1>
-        <p>
-          LeadEX helps B2B companies in Australia connect directly with qualified decision-makers.
+        <h1 style={styles.h1}>
+          Stop Chasing Leads. Start Closing Deals.
+        </h1>
+
+        <p style={styles.p}>
+          We help B2B companies connect with real decision makers and book qualified meetings.
         </p>
 
-        <button style={styles.btn}>Get Started</button>
+        <button style={styles.button}>
+          Get Started
+        </button>
       </div>
 
-      <Section id="services" title="What We Do" items={[
-        "We identify your ideal clients",
-        "We reach out on your behalf",
-        "We qualify leads",
-        "We filter opportunities",
-        "We book meetings",
-        "We manage scheduling",
-        "We deliver appointments"
-      ]} />
+      {/* SERVICES */}
+      <div id="services" style={styles.section}>
+        <h2>What We Do</h2>
 
-      <Section id="process" title="How It Works" items={[
-        "Discovery",
-        "Research",
-        "Outreach",
-        "Qualification",
-        "Booking",
-        "Delivery"
-      ]} />
+        <div style={styles.grid}>
+          {["Lead Generation", "Outbound Calls", "Appointment Setting", "Qualified Meetings"].map((item) => (
+            <div key={item} style={styles.card}>
+              {item}
+            </div>
+          ))}
+        </div>
+      </div>
 
-      <Section id="industries" title="Industries" items={[
-        "Telecom",
-        "SaaS",
-        "Cybersecurity",
-        "Cleaning",
-        "Logistics",
-        "Mobile"
-      ]} />
-
-      <div id="contact" style={styles.contact}>
+      {/* CONTACT */}
+      <div id="contact" style={styles.sectionDark}>
         <h2>Contact Us</h2>
 
         <p>info@lea-dex.com</p>
         <p>0272651399</p>
 
-        <input placeholder="Name" style={styles.input} />
-        <input placeholder="Email" style={styles.input} />
-        <textarea placeholder="Message" style={styles.textarea} />
+        <div style={styles.form}>
+          <input placeholder="Name" style={styles.input} />
+          <input placeholder="Email" style={styles.input} />
+          <textarea placeholder="Message" style={styles.textarea} />
 
-        <button style={styles.btn}>Send</button>
+          <button style={styles.button}>
+            Send
+          </button>
+        </div>
       </div>
 
       <div style={styles.footer}>
-        © 2026 LeadEX
+        © LeadEX
       </div>
 
     </div>
   );
 }
 
-function Section({ title, items, id }) {
-  return (
-    <div id={id} style={styles.section}>
-      <h2>{title}</h2>
-
-      <div style={styles.grid}>
-        {items.map((i) => (
-          <div key={i} style={styles.card}>
-            {i}
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
+/* ===== Styles ===== */
 const styles = {
   page: {
     fontFamily: "Arial",
@@ -109,41 +90,65 @@ const styles = {
     color: "#222",
   },
 
-  nav: {
+  center: {
+    height: "100vh",
     display: "flex",
-    justifyContent: "space-between",
-    padding: "15px",
-    background: "#fff",
+    justifyContent: "center",
+    alignItems: "center",
   },
 
   logo: {
+    color: "#ff7a00",
+    fontSize: "40px",
+    fontWeight: "bold",
+  },
+
+  nav: {
+    display: "flex",
+    justifyContent: "space-between",
+    padding: "15px 25px",
+    background: "#fff",
+    borderBottom: "1px solid #eee",
+    position: "sticky",
+    top: 0,
+  },
+
+  logoSmall: {
     color: "#ff7a00",
     fontWeight: "bold",
   },
 
   links: {
     display: "flex",
-    gap: "10px",
-    fontSize: "13px",
+    gap: "15px",
+    fontSize: "14px",
   },
 
   hero: {
     textAlign: "center",
-    padding: "60px 20px",
+    padding: "70px 20px",
   },
 
-  btn: {
-    marginTop: "15px",
-    background: "#ff7a00",
-    color: "#fff",
-    border: "none",
-    padding: "10px 20px",
-    borderRadius: "20px",
+  h1: {
+    fontSize: "36px",
+    marginBottom: "10px",
+  },
+
+  p: {
+    maxWidth: "600px",
+    margin: "0 auto",
+    color: "#555",
   },
 
   section: {
-    padding: "40px 20px",
+    padding: "50px 20px",
     textAlign: "center",
+  },
+
+  sectionDark: {
+    padding: "50px 20px",
+    textAlign: "center",
+    background: "#fff",
   },
 
   grid: {
@@ -155,33 +160,45 @@ const styles = {
 
   card: {
     background: "#fff",
-    padding: "12px",
-    borderRadius: "8px",
+    padding: "15px",
+    borderRadius: "10px",
+    border: "1px solid #eee",
   },
 
-  contact: {
-    padding: "50px 20px",
-    textAlign: "center",
+  form: {
+    marginTop: "20px",
+    maxWidth: "350px",
+    margin: "0 auto",
+    display: "flex",
+    flexDirection: "column",
+    gap: "10px",
   },
 
   input: {
-    display: "block",
-    margin: "10px auto",
     padding: "10px",
-    width: "250px",
+    border: "1px solid #ccc",
+    borderRadius: "5px",
   },
 
   textarea: {
-    display: "block",
-    margin: "10px auto",
     padding: "10px",
-    width: "250px",
-    height: "80px",
+    height: "90px",
+    border: "1px solid #ccc",
+    borderRadius: "5px",
+  },
+
+  button: {
+    background: "#ff7a00",
+    color: "#fff",
+    border: "none",
+    padding: "12px",
+    borderRadius: "20px",
+    cursor: "pointer",
   },
 
   footer: {
     textAlign: "center",
-    padding: "10px",
+    padding: "15px",
     fontSize: "12px",
     color: "#777",
   },
