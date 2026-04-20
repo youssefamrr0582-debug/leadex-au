@@ -1,58 +1,107 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { Mail, Phone, ArrowRight } from "lucide-react";
 
-export default function App() {
+export default function LeadEXWebsite() {
   const [loading, setLoading] = useState(true);
+  const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
-    setTimeout(() => setLoading(false), 800);
+    const timer = setTimeout(() => setLoading(false), 1200);
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   if (loading) {
     return (
-      <div style={styles.center}>
-        <h1 style={styles.logo}>LeadEX</h1>
+      <div className="h-screen w-full flex items-center justify-center bg-[#f7f4ef]">
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+          <div className="text-4xl font-bold text-[#ff7a00] tracking-wide">
+            LeadEX
+          </div>
+        </motion.div>
       </div>
     );
   }
 
   return (
-    <div style={styles.page}>
+    <div className="bg-[#f7f4ef] text-[#2b2b2b] font-sans leading-relaxed relative overflow-hidden">
+
+      {/* FLOATING EFFECTS (FIXED) */}
+      <div
+        className="fixed top-20 left-10 w-72 h-72 bg-[#ff7a00]/25 rounded-full blur-3xl"
+        style={{
+          transform: `translate3d(${scrollY * 0.05 + 20}px, ${scrollY * 0.1}px, 0)`
+        }}
+      />
+
+      <div
+        className="fixed bottom-20 right-10 w-80 h-80 bg-orange-200/30 rounded-full blur-3xl"
+        style={{
+          transform: `translate3d(${-scrollY * 0.05}px, ${-scrollY * 0.08}px, 0)`
+        }}
+      />
+
+      <div
+        className="fixed top-1/2 left-1/2 w-96 h-96 bg-[#ff7a00]/10 rounded-full blur-3xl"
+        style={{
+          transform: `translate3d(${scrollY * 0.02}px, ${-scrollY * 0.02}px, 0) translate(-50%, -50%)`
+        }}
+      />
 
       {/* NAV */}
-      <div style={styles.nav}>
-        <div style={styles.logoSmall}>LeadEX</div>
-
-        <div style={styles.links}>
-          <a href="#services">Services</a>
-          <a href="#contact">Contact</a>
+      <div className="sticky top-0 z-50 flex justify-between items-center px-8 py-5 border-b bg-[#f7f4ef]/80 backdrop-blur-md border-gray-200">
+        <div className="text-2xl font-bold text-[#ff7a00]">LeadEX</div>
+        <div className="hidden md:flex gap-6 text-sm text-gray-700">
+          <a href="#services" className="hover:text-[#ff7a00]">What We Do</a>
+          <a href="#process" className="hover:text-[#ff7a00]">How It Works</a>
+          <a href="#industries" className="hover:text-[#ff7a00]">Industries</a>
+          <a href="#contact" className="hover:text-[#ff7a00]">Contact</a>
         </div>
       </div>
 
       {/* HERO */}
-      <div style={styles.hero}>
-        <h1 style={styles.h1}>
-          Stop Chasing Leads.<br /> Start Closing Deals.
-        </h1>
+      <div className="px-8 py-20 text-center relative">
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-5xl md:text-6xl font-bold"
+        >
+          Stop Chasing Leads. Start Closing Deals.
+        </motion.h1>
 
-        <p style={styles.sub}>
-          We help B2B companies connect with real decision-makers and book qualified meetings that convert into revenue.
+        <p className="mt-6 text-lg text-gray-600 max-w-3xl mx-auto">
+          LeadEX helps B2B companies in Australia connect directly with qualified decision-makers and turn conversations into real revenue.
         </p>
 
-        <button style={styles.cta}>Get Started</button>
+        <a
+          href="#contact"
+          className="inline-block mt-10 bg-[#ff7a00] text-white px-8 py-3 rounded-full shadow-md hover:scale-105 transition"
+        >
+          Get Started <ArrowRight size={16} className="inline ml-2" />
+        </a>
       </div>
 
       {/* SERVICES */}
-      <div id="services" style={styles.section}>
-        <h2 style={styles.title}>What We Do</h2>
+      <div id="services" className="px-8 py-20 bg-white relative">
+        <h2 className="text-3xl font-bold text-center">What We Do</h2>
 
-        <div style={styles.grid}>
+        <div className="max-w-5xl mx-auto mt-12 grid md:grid-cols-2 gap-6 text-gray-600">
           {[
-            "Lead Generation",
-            "Outbound Calls",
-            "Appointment Setting",
-            "Qualified Meetings"
+            "We identify your ideal clients",
+            "We reach out on your behalf",
+            "We engage and qualify leads",
+            "We filter only real opportunities",
+            "We book confirmed meetings",
+            "We manage scheduling",
+            "We deliver sales-ready appointments"
           ].map((item) => (
-            <div key={item} style={styles.card}>
+            <div key={item} className="p-4 rounded-xl bg-[#f7f4ef]">
               {item}
             </div>
           ))}
@@ -60,167 +109,28 @@ export default function App() {
       </div>
 
       {/* CONTACT */}
-      <div id="contact" style={styles.contact}>
-        <h2 style={styles.title}>Contact Us</h2>
+      <div id="contact" className="px-8 py-24 text-center">
+        <h2 className="text-3xl font-bold">Contact Us</h2>
 
-        <p style={styles.info}>info@lea-dex.com</p>
-        <p style={styles.info}>0272651399</p>
-
-        <div style={styles.form}>
-          <input placeholder="Name" style={styles.input} />
-          <input placeholder="Email" style={styles.input} />
-          <textarea placeholder="Message" style={styles.textarea} />
-
-          <button style={styles.cta}>Send Message</button>
+        <div className="mt-6">
+          <p><Mail className="inline" /> info@lea-dex.com</p>
+          <p><Phone className="inline" /> 0272651399</p>
         </div>
+
+        <form className="mt-10 max-w-xl mx-auto space-y-4">
+          <input className="w-full p-3 border rounded" placeholder="Name" />
+          <input className="w-full p-3 border rounded" placeholder="Email" />
+          <textarea className="w-full p-3 border rounded h-32" placeholder="Message" />
+          <button className="w-full bg-[#ff7a00] text-white py-3 rounded">
+            Send
+          </button>
+        </form>
       </div>
 
-      <div style={styles.footer}>
+      <div className="text-center py-6 text-sm text-gray-500">
         © {new Date().getFullYear()} LeadEX
       </div>
 
     </div>
   );
 }
-
-/* ===== Styles ===== */
-const styles = {
-  page: {
-    fontFamily: "Arial",
-    background: "linear-gradient(180deg, #f7f4ef, #ffffff)",
-    color: "#222",
-  },
-
-  center: {
-    height: "100vh",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-
-  logo: {
-    fontSize: "42px",
-    color: "#ff7a00",
-    fontWeight: "bold",
-  },
-
-  nav: {
-    display: "flex",
-    justifyContent: "space-between",
-    padding: "18px 30px",
-    background: "#fff",
-    borderBottom: "1px solid #eee",
-    position: "sticky",
-    top: 0,
-  },
-
-  logoSmall: {
-    fontWeight: "bold",
-    color: "#ff7a00",
-    fontSize: "18px",
-  },
-
-  links: {
-    display: "flex",
-    gap: "20px",
-    fontSize: "14px",
-  },
-
-  hero: {
-    textAlign: "center",
-    padding: "90px 20px",
-  },
-
-  h1: {
-    fontSize: "42px",
-    marginBottom: "15px",
-    lineHeight: "1.2",
-  },
-
-  sub: {
-    maxWidth: "650px",
-    margin: "0 auto",
-    color: "#555",
-    fontSize: "16px",
-  },
-
-  cta: {
-    marginTop: "25px",
-    background: "#ff7a00",
-    color: "#fff",
-    border: "none",
-    padding: "12px 25px",
-    borderRadius: "30px",
-    cursor: "pointer",
-    fontWeight: "bold",
-    boxShadow: "0 8px 20px rgba(255,122,0,0.25)",
-  },
-
-  section: {
-    padding: "70px 20px",
-    textAlign: "center",
-  },
-
-  title: {
-    fontSize: "28px",
-    marginBottom: "25px",
-  },
-
-  grid: {
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
-    gap: "15px",
-    maxWidth: "800px",
-    margin: "0 auto",
-  },
-
-  card: {
-    background: "#fff",
-    padding: "18px",
-    borderRadius: "14px",
-    border: "1px solid #eee",
-    boxShadow: "0 5px 15px rgba(0,0,0,0.05)",
-  },
-
-  contact: {
-    padding: "70px 20px",
-    textAlign: "center",
-    background: "#fff",
-  },
-
-  info: {
-    color: "#555",
-    margin: "5px 0",
-  },
-
-  form: {
-    marginTop: "25px",
-    maxWidth: "380px",
-    marginLeft: "auto",
-    marginRight: "auto",
-    display: "flex",
-    flexDirection: "column",
-    gap: "12px",
-  },
-
-  input: {
-    padding: "12px",
-    borderRadius: "8px",
-    border: "1px solid #ddd",
-    outline: "none",
-  },
-
-  textarea: {
-    padding: "12px",
-    height: "100px",
-    borderRadius: "8px",
-    border: "1px solid #ddd",
-  },
-
-  footer: {
-    textAlign: "center",
-    padding: "20px",
-    fontSize: "12px",
-    color: "#888",
-  },
-};
