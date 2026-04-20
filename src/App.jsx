@@ -1,136 +1,84 @@
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
-import { Mail, Phone, ArrowRight } from "lucide-react";
+      {/* PROCESS */}
+      <div id="process" className="px-8 py-24 bg-white">
+        <h2 className="text-3xl font-bold text-center">How It Works</h2>
 
-export default function LeadEXWebsite() {
-  const [loading, setLoading] = useState(true);
-  const [scrollY, setScrollY] = useState(0);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 1200);
-    return () => clearTimeout(timer);
-  }, []);
-
-  useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  if (loading) {
-    return (
-      <div className="h-screen w-full flex items-center justify-center bg-[#f7f4ef]">
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-          <div className="text-4xl font-bold text-[#ff7a00] tracking-wide">
-            LeadEX
-          </div>
-        </motion.div>
-      </div>
-    );
-  }
-
-  return (
-    <div className="bg-[#f7f4ef] text-[#2b2b2b] font-sans leading-relaxed relative overflow-hidden">
-
-      {/* FLOATING EFFECTS (FIXED) */}
-      <div
-        className="fixed top-20 left-10 w-72 h-72 bg-[#ff7a00]/25 rounded-full blur-3xl"
-        style={{
-          transform: `translate3d(${scrollY * 0.05 + 20}px, ${scrollY * 0.1}px, 0)`
-        }}
-      />
-
-      <div
-        className="fixed bottom-20 right-10 w-80 h-80 bg-orange-200/30 rounded-full blur-3xl"
-        style={{
-          transform: `translate3d(${-scrollY * 0.05}px, ${-scrollY * 0.08}px, 0)`
-        }}
-      />
-
-      <div
-        className="fixed top-1/2 left-1/2 w-96 h-96 bg-[#ff7a00]/10 rounded-full blur-3xl"
-        style={{
-          transform: `translate3d(${scrollY * 0.02}px, ${-scrollY * 0.02}px, 0) translate(-50%, -50%)`
-        }}
-      />
-
-      {/* NAV */}
-      <div className="sticky top-0 z-50 flex justify-between items-center px-8 py-5 border-b bg-[#f7f4ef]/80 backdrop-blur-md border-gray-200">
-        <div className="text-2xl font-bold text-[#ff7a00]">LeadEX</div>
-        <div className="hidden md:flex gap-6 text-sm text-gray-700">
-          <a href="#services" className="hover:text-[#ff7a00]">What We Do</a>
-          <a href="#process" className="hover:text-[#ff7a00]">How It Works</a>
-          <a href="#industries" className="hover:text-[#ff7a00]">Industries</a>
-          <a href="#contact" className="hover:text-[#ff7a00]">Contact</a>
-        </div>
-      </div>
-
-      {/* HERO */}
-      <div className="px-8 py-20 text-center relative">
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-5xl md:text-6xl font-bold"
-        >
-          Stop Chasing Leads. Start Closing Deals.
-        </motion.h1>
-
-        <p className="mt-6 text-lg text-gray-600 max-w-3xl mx-auto">
-          LeadEX helps B2B companies in Australia connect directly with qualified decision-makers and turn conversations into real revenue.
-        </p>
-
-        <a
-          href="#contact"
-          className="inline-block mt-10 bg-[#ff7a00] text-white px-8 py-3 rounded-full shadow-md hover:scale-105 transition"
-        >
-          Get Started <ArrowRight size={16} className="inline ml-2" />
-        </a>
-      </div>
-
-      {/* SERVICES */}
-      <div id="services" className="px-8 py-20 bg-white relative">
-        <h2 className="text-3xl font-bold text-center">What We Do</h2>
-
-        <div className="max-w-5xl mx-auto mt-12 grid md:grid-cols-2 gap-6 text-gray-600">
+        <div className="max-w-5xl mx-auto mt-12 grid md:grid-cols-3 gap-6 text-gray-600">
           {[
-            "We identify your ideal clients",
-            "We reach out on your behalf",
-            "We engage and qualify leads",
-            "We filter only real opportunities",
-            "We book confirmed meetings",
-            "We manage scheduling",
-            "We deliver sales-ready appointments"
-          ].map((item) => (
-            <div key={item} className="p-4 rounded-xl bg-[#f7f4ef]">
-              {item}
+            "Discovery & Targeting",
+            "Lead Research",
+            "Outreach",
+            "Qualification",
+            "Booking",
+            "Delivery"
+          ].map((i) => (
+            <div key={i} className="p-5 bg-[#f7f4ef] rounded-xl">
+              {i}
             </div>
           ))}
         </div>
       </div>
 
-      {/* CONTACT */}
-      <div id="contact" className="px-8 py-24 text-center">
-        <h2 className="text-3xl font-bold">Contact Us</h2>
+      {/* INDUSTRIES */}
+      <div id="industries" className="px-8 py-24">
+        <h2 className="text-3xl font-bold text-center">Industries</h2>
 
-        <div className="mt-6">
-          <p><Mail className="inline" /> info@lea-dex.com</p>
-          <p><Phone className="inline" /> 0272651399</p>
+        <div className="max-w-5xl mx-auto mt-12 grid md:grid-cols-3 gap-6">
+          {[
+            "Telecom",
+            "SaaS",
+            "Cybersecurity",
+            "Cleaning Services",
+            "Logistics",
+            "Business Mobile"
+          ].map((i) => (
+            <div key={i} className="p-5 bg-white border rounded-xl shadow-sm">
+              ● {i}
+            </div>
+          ))}
         </div>
-
-        <form className="mt-10 max-w-xl mx-auto space-y-4">
-          <input className="w-full p-3 border rounded" placeholder="Name" />
-          <input className="w-full p-3 border rounded" placeholder="Email" />
-          <textarea className="w-full p-3 border rounded h-32" placeholder="Message" />
-          <button className="w-full bg-[#ff7a00] text-white py-3 rounded">
-            Send
-          </button>
-        </form>
       </div>
 
-      <div className="text-center py-6 text-sm text-gray-500">
-        © {new Date().getFullYear()} LeadEX
+      {/* PRICING */}
+      <div id="pricing" className="px-8 py-24 bg-white">
+        <h2 className="text-3xl font-bold text-center">Pricing</h2>
+
+        <div className="max-w-5xl mx-auto mt-12 grid md:grid-cols-3 gap-6">
+          <div className="p-6 rounded-xl border shadow-sm">
+            <h3 className="font-bold">Custom Strategy</h3>
+            <p className="mt-2 text-gray-600">
+              Pricing depends on your target market, volume, and campaign size.
+            </p>
+          </div>
+
+          <div className="p-6 rounded-xl border shadow-sm bg-[#fff7ed]">
+            <h3 className="font-bold">Tailored Solution</h3>
+            <p className="mt-2 text-gray-600">
+              Every business gets a custom outbound system designed for conversion.
+            </p>
+          </div>
+
+          <div className="p-6 rounded-xl border shadow-sm">
+            <h3 className="font-bold">No Fixed Packages</h3>
+            <p className="mt-2 text-gray-600">
+              We don’t use fixed pricing because every campaign is different.
+            </p>
+          </div>
+        </div>
       </div>
 
-    </div>
-  );
-}
+      {/* GUARANTEE */}
+      <div id="guarantee" className="px-8 py-24">
+        <h2 className="text-3xl font-bold text-center">Guarantee</h2>
+
+        <div className="max-w-3xl mx-auto mt-12 space-y-4 text-center">
+          <div className="p-4 bg-green-50 rounded-xl">
+            We replace unqualified meetings
+          </div>
+          <div className="p-4 bg-orange-50 rounded-xl">
+            70%+ show-up rate target
+          </div>
+          <div className="p-4 bg-yellow-50 rounded-xl">
+            Extra meetings if performance drops
+          </div>
+        </div>
+      </div>
