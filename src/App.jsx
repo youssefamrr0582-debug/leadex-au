@@ -4,14 +4,13 @@ export default function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 900);
-    return () => clearTimeout(timer);
+    setTimeout(() => setLoading(false), 700);
   }, []);
 
   if (loading) {
     return (
-      <div style={styles.center}>
-        <h1 style={styles.logo}>LeadEX</h1>
+      <div style={{ display: "flex", height: "100vh", justifyContent: "center", alignItems: "center" }}>
+        <h1 style={{ color: "#ff7a00" }}>LeadEX</h1>
       </div>
     );
   }
@@ -19,10 +18,9 @@ export default function App() {
   return (
     <div style={styles.page}>
 
-      {/* NAV */}
       <div style={styles.nav}>
-        <div style={styles.logoSmall}>LeadEX</div>
-        <div style={styles.navLinks}>
+        <div style={styles.logo}>LeadEX</div>
+        <div style={styles.links}>
           <a href="#services">What We Do</a>
           <a href="#process">How It Works</a>
           <a href="#industries">Industries</a>
@@ -30,270 +28,160 @@ export default function App() {
         </div>
       </div>
 
-      {/* HERO */}
       <div style={styles.hero}>
-        <h1 style={styles.h1}>
-          Stop Chasing Leads. Start Closing Deals.
-        </h1>
-
-        <p style={styles.p}>
-          LeadEX helps B2B companies in Australia connect directly with
-          qualified decision-makers and turn conversations into revenue.
+        <h1>Stop Chasing Leads. Start Closing Deals.</h1>
+        <p>
+          LeadEX helps B2B companies in Australia connect directly with qualified decision-makers.
         </p>
 
-        <button style={styles.button}>
-          Get Started
-        </button>
+        <button style={styles.btn}>Get Started</button>
       </div>
 
-      {/* SERVICES */}
-      <div id="services" style={styles.section}>
-        <h2>What We Do</h2>
+      <Section id="services" title="What We Do" items={[
+        "We identify your ideal clients",
+        "We reach out on your behalf",
+        "We qualify leads",
+        "We filter opportunities",
+        "We book meetings",
+        "We manage scheduling",
+        "We deliver appointments"
+      ]} />
 
-        <div style={styles.grid}>
-          {[
-            "We identify your ideal clients",
-            "We reach out on your behalf",
-            "We qualify leads",
-            "We filter real opportunities",
-            "We book meetings",
-            "We manage scheduling",
-            "We deliver sales-ready appointments"
-          ].map((item) => (
-            <div key={item} style={styles.card}>
-              {item}
-            </div>
-          ))}
-        </div>
-      </div>
+      <Section id="process" title="How It Works" items={[
+        "Discovery",
+        "Research",
+        "Outreach",
+        "Qualification",
+        "Booking",
+        "Delivery"
+      ]} />
 
-      {/* PROCESS */}
-      <div id="process" style={styles.sectionDark}>
-        <h2>How It Works</h2>
+      <Section id="industries" title="Industries" items={[
+        "Telecom",
+        "SaaS",
+        "Cybersecurity",
+        "Cleaning",
+        "Logistics",
+        "Mobile"
+      ]} />
 
-        <div style={styles.grid}>
-          {[
-            "Discovery & Targeting",
-            "Lead Research",
-            "Outreach",
-            "Qualification",
-            "Booking",
-            "Briefing",
-            "Delivery"
-          ].map((item) => (
-            <div key={item} style={styles.cardDark}>
-              {item}
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* INDUSTRIES */}
-      <div id="industries" style={styles.section}>
-        <h2>Industries</h2>
-
-        <div style={styles.grid}>
-          {[
-            "Telecom",
-            "SaaS",
-            "Cybersecurity",
-            "Cleaning Services",
-            "Logistics",
-            "Business Mobile",
-            "Cloud Solutions",
-            "VoIP"
-          ].map((item) => (
-            <div key={item} style={styles.card}>
-              ● {item}
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* QUALITY */}
-      <div style={styles.sectionDark}>
-        <h2>Quality Control</h2>
-
-        <div style={styles.list}>
-          <p>✔ We verify every lead</p>
-          <p>✔ We confirm decision-makers</p>
-          <p>✔ We review conversations</p>
-          <p>✔ We ensure sales-ready meetings</p>
-          <p>✔ We optimize performance</p>
-        </div>
-      </div>
-
-      {/* CASE STUDY */}
-      <div style={styles.section}>
-        <h2>Case Study</h2>
-        <p style={styles.box}>
-          We helped a B2B company increase sales meetings by switching to
-          qualified appointment setting.
-        </p>
-      </div>
-
-      {/* CONTACT */}
-      <div id="contact" style={styles.sectionDark}>
+      <div id="contact" style={styles.contact}>
         <h2>Contact Us</h2>
 
         <p>info@lea-dex.com</p>
         <p>0272651399</p>
 
-        <div style={styles.form}>
-          <input placeholder="Name" style={styles.input} />
-          <input placeholder="Email" style={styles.input} />
-          <textarea placeholder="Message" style={styles.textarea} />
+        <input placeholder="Name" style={styles.input} />
+        <input placeholder="Email" style={styles.input} />
+        <textarea placeholder="Message" style={styles.textarea} />
 
-          <button style={styles.button}>
-            Send
-          </button>
-        </div>
+        <button style={styles.btn}>Send</button>
       </div>
 
       <div style={styles.footer}>
         © 2026 LeadEX
       </div>
+
     </div>
   );
 }
 
-/* ===== Styles ===== */
+function Section({ title, items, id }) {
+  return (
+    <div id={id} style={styles.section}>
+      <h2>{title}</h2>
+
+      <div style={styles.grid}>
+        {items.map((i) => (
+          <div key={i} style={styles.card}>
+            {i}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 const styles = {
   page: {
     fontFamily: "Arial",
     background: "#f7f4ef",
-    color: "#2b2b2b",
-  },
-
-  center: {
-    height: "100vh",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-
-  logo: {
-    color: "#ff7a00",
-    fontSize: "40px",
-    fontWeight: "bold",
-  },
-
-  logoSmall: {
-    color: "#ff7a00",
-    fontWeight: "bold",
-    fontSize: "20px",
+    color: "#222",
   },
 
   nav: {
     display: "flex",
     justifyContent: "space-between",
-    padding: "20px",
-    background: "white",
-    borderBottom: "1px solid #ddd",
+    padding: "15px",
+    background: "#fff",
   },
 
-  navLinks: {
+  logo: {
+    color: "#ff7a00",
+    fontWeight: "bold",
+  },
+
+  links: {
     display: "flex",
-    gap: "15px",
-    fontSize: "14px",
+    gap: "10px",
+    fontSize: "13px",
   },
 
   hero: {
     textAlign: "center",
-    padding: "70px 20px",
+    padding: "60px 20px",
   },
 
-  h1: {
-    fontSize: "38px",
-    marginBottom: "15px",
-  },
-
-  p: {
-    maxWidth: "600px",
-    margin: "0 auto",
-    color: "#555",
-  },
-
-  button: {
-    marginTop: "20px",
+  btn: {
+    marginTop: "15px",
     background: "#ff7a00",
-    color: "white",
-    padding: "12px 25px",
+    color: "#fff",
     border: "none",
-    borderRadius: "25px",
-    cursor: "pointer",
+    padding: "10px 20px",
+    borderRadius: "20px",
   },
 
   section: {
-    padding: "50px 20px",
+    padding: "40px 20px",
     textAlign: "center",
-  },
-
-  sectionDark: {
-    padding: "50px 20px",
-    textAlign: "center",
-    background: "#fff",
   },
 
   grid: {
     display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
-    gap: "12px",
-    marginTop: "25px",
+    gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))",
+    gap: "10px",
+    marginTop: "20px",
   },
 
   card: {
     background: "#fff",
-    padding: "15px",
-    borderRadius: "10px",
-    border: "1px solid #eee",
+    padding: "12px",
+    borderRadius: "8px",
   },
 
-  cardDark: {
-    background: "#f7f4ef",
-    padding: "15px",
-    borderRadius: "10px",
-  },
-
-  list: {
-    marginTop: "20px",
-    lineHeight: "1.8",
-  },
-
-  box: {
-    background: "#fff",
-    padding: "20px",
-    borderRadius: "10px",
-    maxWidth: "600px",
-    margin: "0 auto",
-  },
-
-  form: {
-    marginTop: "20px",
-    maxWidth: "400px",
-    marginLeft: "auto",
-    marginRight: "auto",
-    display: "flex",
-    flexDirection: "column",
-    gap: "10px",
+  contact: {
+    padding: "50px 20px",
+    textAlign: "center",
   },
 
   input: {
+    display: "block",
+    margin: "10px auto",
     padding: "10px",
-    borderRadius: "5px",
-    border: "1px solid #ccc",
+    width: "250px",
   },
 
   textarea: {
+    display: "block",
+    margin: "10px auto",
     padding: "10px",
-    borderRadius: "5px",
-    border: "1px solid #ccc",
-    height: "100px",
+    width: "250px",
+    height: "80px",
   },
 
   footer: {
     textAlign: "center",
-    padding: "15px",
+    padding: "10px",
     fontSize: "12px",
     color: "#777",
   },
