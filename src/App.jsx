@@ -1,30 +1,6 @@
-import { useState, useEffect } from "react";
-
 export default function App() {
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const t = setTimeout(() => setLoading(false), 600);
-    return () => clearTimeout(t);
-  }, []);
-
-  if (loading) {
-    return (
-      <div style={{
-        height: "100vh",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        fontSize: "32px",
-        fontWeight: "bold"
-      }}>
-        LeadEX
-      </div>
-    );
-  }
-
   return (
-    <div style={{ fontFamily: "Arial", background: "#fff", color: "#111" }}>
+    <div style={{ fontFamily: "Arial", color: "#111", lineHeight: "1.6" }}>
 
       {/* NAVBAR */}
       <header style={{
@@ -51,7 +27,7 @@ export default function App() {
       {/* HERO */}
       <section style={{ textAlign: "center", padding: "80px 20px" }}>
         <h1>Stop Chasing Leads. Start Closing Deals.</h1>
-        <p style={{ maxWidth: "700px", margin: "20px auto" }}>
+        <p>
           We generate qualified B2B leads and book decision-maker meetings so your sales team only closes.
         </p>
         <button style={{
@@ -80,25 +56,23 @@ export default function App() {
       <section id="how" style={{ padding: "60px 20px", textAlign: "center" }}>
         <h2>How It Works</h2>
 
-        <div>
-          <p><b>Define Your Ideal Customer Profile</b></p>
-          <p>We align on your target customers</p>
+        <p><b>Define Your Ideal Customer Profile</b></p>
+        <p>We align on your target customers</p>
 
-          <p><b>Outbound</b></p>
-          <p>We run personalized multi-channel campaigns</p>
+        <p><b>Outbound</b></p>
+        <p>We run personalized multi-channel campaigns</p>
 
-          <p><b>Qualify</b></p>
-          <p>We filter out unqualified prospects</p>
+        <p><b>Qualify</b></p>
+        <p>We filter out unqualified prospects</p>
 
-          <p><b>Educate</b></p>
-          <p>We prepare prospects before the call</p>
+        <p><b>Educate</b></p>
+        <p>We prepare prospects before the call</p>
 
-          <p><b>Book</b></p>
-          <p>We schedule qualified appointments</p>
+        <p><b>Book</b></p>
+        <p>We schedule qualified appointments</p>
 
-          <p><b>Close</b></p>
-          <p>You close the deal</p>
-        </div>
+        <p><b>Close</b></p>
+        <p>You close the deal</p>
       </section>
 
       {/* INDUSTRIES */}
@@ -125,13 +99,12 @@ export default function App() {
         <p>Our pricing is tailored to your needs.</p>
         <p>Depends on number of seats, lead volume, and targeting complexity.</p>
         <p>We agree on all parameters upfront.</p>
-        <p>Clear expectations and scalable results.</p>
       </section>
 
       {/* GUARANTEE */}
       <section id="guarantee" style={{ padding: "60px 20px", textAlign: "center" }}>
         <h2>Guarantee</h2>
-        <p>80% Minimum Show Rate Guarantee</p>
+        <p><b>80% Minimum Show Rate Guarantee</b></p>
         <p>If performance drops below 80%, we will compensate you with additional meetings or credit.</p>
       </section>
 
@@ -139,8 +112,8 @@ export default function App() {
       <section id="contact" style={{ padding: "60px 20px", textAlign: "center" }}>
         <h2>Contact Us</h2>
 
-        <p>info@lea-dex.com</p>
-        <p>02 7265 1399</p>
+        <p>Phone: 02 7265 1399</p>
+        <p>Email: info@lea-dex.com</p>
 
         <div style={{ marginTop: "20px" }}>
           <input placeholder="Name" /><br /><br />
@@ -156,7 +129,7 @@ export default function App() {
           </button>
         </div>
 
-        <p style={{ marginTop: "20px", fontSize: "12px" }}>
+        <p style={{ fontSize: "12px", marginTop: "20px" }}>
           We'll get back to you shortly
         </p>
       </section>
