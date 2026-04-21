@@ -6,7 +6,7 @@ export default function App() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    setTimeout(() => setLoaded(true), 500);
+    const timer = setTimeout(() => setLoaded(true), 500);
 
     const onScroll = () => {
       setScrolled(window.scrollY > 40);
@@ -14,22 +14,30 @@ export default function App() {
 
     window.addEventListener("scroll", onScroll);
 
-    // scroll reveal
-    const elements = document.querySelectorAll(".revealOnScroll");
-
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting) e.target.classList.add("active");
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("active");
+        }
       });
     }, { threshold: 0.1 });
 
-    elements.forEach(el => observer.observe(el));
+    const elements = document.querySelectorAll(".revealOnScroll");
+    elements.forEach((el) => observer.observe(el));
 
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener("scroll", onScroll);
+      observer.disconnect();
+    };
   }, []);
 
   if (!loaded) {
-    return <div className="loader">LeadEX</div>;
+    return (
+      <div className="loader">
+        LeadEX
+      </div>
+    );
   }
 
   return (
@@ -37,12 +45,14 @@ export default function App() {
 
       {/* NAV */}
       <header className={`nav ${scrolled ? "navScrolled" : ""}`}>
-        <b>LeadEX</b>
+        <b className="logo">LeadEX</b>
+
         <div className="links">
           <a href="#what">What</a>
           <a href="#how">How</a>
           <a href="#industries">Industries</a>
           <a href="#pricing">Pricing</a>
+          <a href="#guarantee">Guarantee</a>
           <a href="#contact">Contact</a>
         </div>
       </header>
@@ -55,12 +65,12 @@ export default function App() {
         </h1>
 
         <p className="reveal delay1">
-          We generate high-intent B2B leads and book qualified meetings for your sales team.
+          We generate high-quality B2B leads and book meetings with decision-makers.
         </p>
 
-        <button className="cta reveal delay2">
+        <a href="#contact" className="cta reveal delay2">
           Get Started
-        </button>
+        </a>
 
         <div className="glow"></div>
       </section>
@@ -68,10 +78,11 @@ export default function App() {
       {/* WHAT */}
       <section id="what" className="section revealOnScroll">
         <h2>What We Do</h2>
+
         <div className="card">
           We help B2B companies generate qualified leads and book meetings with decision-makers.
           <br /><br />
-          We handle the entire front-end sales process so your team only closes deals.
+          Our team handles the full outbound sales process so your team focuses only on closing deals.
         </div>
       </section>
 
@@ -81,14 +92,14 @@ export default function App() {
 
         <div className="grid">
           {[
-            ["Define ICP","Target customers"],
-            ["Outbound","Campaigns"],
-            ["Qualify","Filter leads"],
-            ["Educate","Warm prospects"],
-            ["Book","Meetings"],
-            ["Close","Revenue"]
-          ].map((i, idx) => (
-            <div key={idx} className="card hover">
+            ["Define ICP", "Target customers"],
+            ["Outbound", "Campaigns"],
+            ["Qualify", "Filter leads"],
+            ["Educate", "Warm prospects"],
+            ["Book", "Meetings"],
+            ["Close", "Revenue"]
+          ].map((i) => (
+            <div key={i[0]} className="card hover">
               <b>{i[0]}</b>
               <p>{i[1]}</p>
             </div>
@@ -101,8 +112,8 @@ export default function App() {
         <h2>Industries</h2>
 
         <div className="chips">
-          {["Telecom","SaaS","Cybersecurity","Cloud","VoIP","Logistics","ISPs"].map((i, idx) => (
-            <span key={idx} className="chip">{i}</span>
+          {["Telecom","SaaS","Cybersecurity","Cloud","VoIP","Logistics","ISPs"].map((i) => (
+            <span key={i} className="chip">{i}</span>
           ))}
         </div>
       </section>
@@ -112,11 +123,17 @@ export default function App() {
         <h2>Pricing</h2>
 
         <div className="card">
-          Tailored pricing based on:
-          <br /><br />
-          • Volume<br />
-          • Target market<br />
-          • Complexity
+          Tailored pricing based on volume, targeting, and complexity.
+        </div>
+      </section>
+
+      {/* GUARANTEE */}
+      <section id="guarantee" className="section revealOnScroll">
+        <h2>Guarantee</h2>
+
+        <div className="card highlight">
+          <b>80% Minimum Show Rate</b>
+          <p>If performance drops below 80%, we compensate with extra meetings or credit.</p>
         </div>
       </section>
 
