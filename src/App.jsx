@@ -4,7 +4,7 @@ export default function App() {
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    const t = setTimeout(() => setLoaded(true), 500);
+    const t = setTimeout(() => setLoaded(true), 400);
     return () => clearTimeout(t);
   }, []);
 
@@ -15,52 +15,57 @@ export default function App() {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        background: "#0f0f0f",
+        background: "#0a0a0a",
         color: "#ff7a00",
-        fontSize: "42px",
-        fontWeight: "700",
-        letterSpacing: "2px"
+        fontSize: "40px",
+        fontWeight: "700"
       }}>
         LeadEX
       </div>
     );
   }
 
-  const card = {
-    background: "white",
-    borderRadius: "16px",
-    padding: "20px",
-    boxShadow: "0 10px 30px rgba(0,0,0,0.08)",
-    transition: "0.3s"
-  };
-
   const section = {
-    padding: "80px 20px",
+    padding: "100px 20px",
     maxWidth: "1100px",
     margin: "0 auto"
   };
 
+  const card = {
+    background: "rgba(255,255,255,0.05)",
+    border: "1px solid rgba(255,255,255,0.1)",
+    borderRadius: "16px",
+    padding: "20px",
+    backdropFilter: "blur(10px)",
+    transition: "0.3s"
+  };
+
   return (
-    <div style={{ fontFamily: "Inter, Arial", background: "#f7f4ef", color: "#111" }}>
+    <div style={{
+      fontFamily: "Arial",
+      background: "radial-gradient(circle at top, #1a1a1a, #000)",
+      color: "white"
+    }}>
 
       {/* NAVBAR */}
       <header style={{
-        position: "sticky",
+        position: "fixed",
         top: 0,
-        background: "rgba(255,255,255,0.8)",
-        backdropFilter: "blur(10px)",
+        width: "100%",
         display: "flex",
         justifyContent: "space-between",
         padding: "18px 40px",
-        borderBottom: "1px solid #eee",
+        background: "rgba(0,0,0,0.6)",
+        backdropFilter: "blur(10px)",
+        borderBottom: "1px solid rgba(255,255,255,0.1)",
         zIndex: 100
       }}>
-        <b style={{ fontSize: "18px", color: "#ff7a00" }}>LeadEX</b>
+        <b style={{ color: "#ff7a00" }}>LeadEX</b>
 
         <div style={{ display: "flex", gap: "18px", fontSize: "14px" }}>
-          {["What","How","Industries","Quality","Pricing","Guarantee","Contact"].map((t) => (
-            <a key={t} href={`#${t.toLowerCase()}`} style={{ textDecoration: "none", color: "#333" }}>
-              {t}
+          {["What","How","Industries","Pricing","Guarantee","Contact"].map((i) => (
+            <a key={i} href={`#${i.toLowerCase()}`} style={{ color: "#ccc", textDecoration: "none" }}>
+              {i}
             </a>
           ))}
         </div>
@@ -70,26 +75,29 @@ export default function App() {
       <section style={{
         ...section,
         textAlign: "center",
-        paddingTop: "120px"
+        paddingTop: "180px"
       }}>
-        <h1 style={{ fontSize: "52px", marginBottom: "20px" }}>
+        <h1 style={{
+          fontSize: "60px",
+          marginBottom: "20px"
+        }}>
           Stop Chasing Leads. <span style={{ color: "#ff7a00" }}>Start Closing Deals.</span>
         </h1>
 
-        <p style={{ maxWidth: "700px", margin: "0 auto", color: "#555" }}>
-          We generate qualified B2B leads and book decision-maker meetings so your sales team only closes.
+        <p style={{ color: "#aaa", maxWidth: "700px", margin: "0 auto" }}>
+          We generate qualified B2B leads and book decision-maker meetings so your sales team only focuses on closing.
         </p>
 
         <button style={{
           marginTop: "30px",
-          padding: "12px 26px",
+          padding: "14px 30px",
           borderRadius: "999px",
           border: "none",
           background: "#ff7a00",
-          color: "white",
+          color: "black",
           fontWeight: "bold",
           cursor: "pointer",
-          boxShadow: "0 10px 20px rgba(255,122,0,0.3)"
+          boxShadow: "0 0 30px rgba(255,122,0,0.4)"
         }}>
           Get Started
         </button>
@@ -100,12 +108,9 @@ export default function App() {
         <h2 style={{ textAlign: "center", marginBottom: "40px" }}>What We Do</h2>
 
         <div style={card}>
-          <p>
-            We help B2B companies generate qualified leads and book meetings with decision-makers.
-          </p>
-          <p style={{ marginTop: "10px", color: "#666" }}>
-            Our team handles the entire front-end sales process—from identifying prospects to scheduling appointments.
-          </p>
+          We help B2B companies generate qualified leads and book meetings with decision-makers.
+          <br /><br />
+          We handle full outbound sales so your team only closes deals.
         </div>
       </section>
 
@@ -119,16 +124,16 @@ export default function App() {
           gap: "20px"
         }}>
           {[
-            ["Define ICP", "We align your ideal customers"],
-            ["Outbound", "Multi-channel campaigns"],
-            ["Qualify", "Filter serious leads"],
-            ["Educate", "Prepare prospects"],
-            ["Book", "Schedule meetings"],
-            ["Close", "You close deals"]
-          ].map((i, idx) => (
-            <div key={idx} style={card}>
+            ["Define ICP","Target ideal customers"],
+            ["Outreach","Multi-channel campaigns"],
+            ["Qualify","Filter real leads"],
+            ["Educate","Warm up prospects"],
+            ["Book","Schedule meetings"],
+            ["Close","You close deals"]
+          ].map((i) => (
+            <div key={i[0]} style={card}>
               <b style={{ color: "#ff7a00" }}>{i[0]}</b>
-              <p style={{ marginTop: "8px", color: "#666" }}>{i[1]}</p>
+              <p style={{ color: "#aaa" }}>{i[1]}</p>
             </div>
           ))}
         </div>
@@ -141,31 +146,19 @@ export default function App() {
         <div style={{
           display: "flex",
           flexWrap: "wrap",
-          gap: "10px",
-          justifyContent: "center"
+          justifyContent: "center",
+          gap: "10px"
         }}>
-          {["Telecom","SaaS","Cybersecurity","Logistics","Cloud","VoIP","ISP","Mobile"].map((i) => (
+          {["Telecom","SaaS","Cybersecurity","Cloud","VoIP","Logistics"].map((i) => (
             <span key={i} style={{
               padding: "10px 16px",
-              background: "white",
               borderRadius: "999px",
-              boxShadow: "0 5px 15px rgba(0,0,0,0.05)"
+              border: "1px solid rgba(255,255,255,0.1)",
+              background: "rgba(255,255,255,0.03)"
             }}>
               {i}
             </span>
           ))}
-        </div>
-      </section>
-
-      {/* QUALITY */}
-      <section id="quality" style={section}>
-        <h2 style={{ textAlign: "center", marginBottom: "40px" }}>Quality Control</h2>
-
-        <div style={card}>
-          <p>✔ We prioritize quality over quantity</p>
-          <p>✔ Every lead is pre-qualified</p>
-          <p>✔ Matches your ICP</p>
-          <p>✔ Fully informed before calls</p>
         </div>
       </section>
 
@@ -174,10 +167,11 @@ export default function App() {
         <h2 style={{ textAlign: "center", marginBottom: "40px" }}>Pricing</h2>
 
         <div style={card}>
-          <p>Custom pricing based on:</p>
-          <p>• Seats</p>
-          <p>• Lead volume</p>
-          <p>• Targeting complexity</p>
+          Custom pricing based on:
+          <br /><br />
+          • Volume<br />
+          • Seats<br />
+          • Targeting complexity
         </div>
       </section>
 
@@ -187,11 +181,11 @@ export default function App() {
 
         <div style={{
           ...card,
-          border: "2px solid #ff7a00"
+          border: "1px solid #ff7a00"
         }}>
-          <b style={{ color: "#ff7a00" }}>80% Minimum Show Rate</b>
-          <p style={{ marginTop: "10px" }}>
-            If performance drops below 80%, we compensate with extra meetings or credit.
+          <b style={{ color: "#ff7a00" }}>80% Show Rate Guarantee</b>
+          <p style={{ color: "#aaa" }}>
+            If we drop below 80%, we compensate with extra meetings or credit.
           </p>
         </div>
       </section>
@@ -200,7 +194,7 @@ export default function App() {
       <section id="contact" style={section}>
         <h2 style={{ textAlign: "center", marginBottom: "40px" }}>Contact</h2>
 
-        <div style={{ ...card, textAlign: "center" }}>
+        <div style={card}>
           <p>📞 02 7265 1399</p>
           <p>✉️ info@lea-dex.com</p>
 
@@ -210,14 +204,13 @@ export default function App() {
             <br />
             <textarea placeholder="Message" style={{ marginTop: "10px", padding: "8px", width: "80%" }} />
             <br />
-
             <button style={{
               marginTop: "10px",
               padding: "10px 20px",
               background: "#ff7a00",
               border: "none",
-              color: "white",
-              borderRadius: "8px"
+              borderRadius: "8px",
+              cursor: "pointer"
             }}>
               Send
             </button>
@@ -226,7 +219,12 @@ export default function App() {
       </section>
 
       {/* FOOTER */}
-      <footer style={{ textAlign: "center", padding: "30px", fontSize: "12px", color: "#777" }}>
+      <footer style={{
+        textAlign: "center",
+        padding: "40px",
+        fontSize: "12px",
+        color: "#666"
+      }}>
         © 2026 LeadEX
       </footer>
 
