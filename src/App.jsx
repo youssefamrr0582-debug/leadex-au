@@ -1,141 +1,232 @@
+import { useEffect, useState } from "react";
+
 export default function App() {
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    const t = setTimeout(() => setLoaded(true), 500);
+    return () => clearTimeout(t);
+  }, []);
+
+  if (!loaded) {
+    return (
+      <div style={{
+        height: "100vh",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        background: "#0f0f0f",
+        color: "#ff7a00",
+        fontSize: "42px",
+        fontWeight: "700",
+        letterSpacing: "2px"
+      }}>
+        LeadEX
+      </div>
+    );
+  }
+
+  const card = {
+    background: "white",
+    borderRadius: "16px",
+    padding: "20px",
+    boxShadow: "0 10px 30px rgba(0,0,0,0.08)",
+    transition: "0.3s"
+  };
+
+  const section = {
+    padding: "80px 20px",
+    maxWidth: "1100px",
+    margin: "0 auto"
+  };
+
   return (
-    <div style={{ fontFamily: "Arial", color: "#111", lineHeight: "1.6" }}>
+    <div style={{ fontFamily: "Inter, Arial", background: "#f7f4ef", color: "#111" }}>
 
       {/* NAVBAR */}
       <header style={{
-        display: "flex",
-        justifyContent: "space-between",
-        padding: "20px 40px",
-        borderBottom: "1px solid #eee",
         position: "sticky",
         top: 0,
-        background: "white"
+        background: "rgba(255,255,255,0.8)",
+        backdropFilter: "blur(10px)",
+        display: "flex",
+        justifyContent: "space-between",
+        padding: "18px 40px",
+        borderBottom: "1px solid #eee",
+        zIndex: 100
       }}>
-        <b>LeadEX</b>
-        <div style={{ display: "flex", gap: "15px", fontSize: "14px" }}>
-          <a href="#what">What We Do</a>
-          <a href="#how">How It Works</a>
-          <a href="#industries">Industries</a>
-          <a href="#quality">Quality</a>
-          <a href="#pricing">Pricing</a>
-          <a href="#guarantee">Guarantee</a>
-          <a href="#contact">Contact</a>
+        <b style={{ fontSize: "18px", color: "#ff7a00" }}>LeadEX</b>
+
+        <div style={{ display: "flex", gap: "18px", fontSize: "14px" }}>
+          {["What","How","Industries","Quality","Pricing","Guarantee","Contact"].map((t) => (
+            <a key={t} href={`#${t.toLowerCase()}`} style={{ textDecoration: "none", color: "#333" }}>
+              {t}
+            </a>
+          ))}
         </div>
       </header>
 
       {/* HERO */}
-      <section style={{ textAlign: "center", padding: "80px 20px" }}>
-        <h1>Stop Chasing Leads. Start Closing Deals.</h1>
-        <p>
+      <section style={{
+        ...section,
+        textAlign: "center",
+        paddingTop: "120px"
+      }}>
+        <h1 style={{ fontSize: "52px", marginBottom: "20px" }}>
+          Stop Chasing Leads. <span style={{ color: "#ff7a00" }}>Start Closing Deals.</span>
+        </h1>
+
+        <p style={{ maxWidth: "700px", margin: "0 auto", color: "#555" }}>
           We generate qualified B2B leads and book decision-maker meetings so your sales team only closes.
         </p>
+
         <button style={{
-          marginTop: "20px",
-          padding: "10px 20px",
-          background: "black",
+          marginTop: "30px",
+          padding: "12px 26px",
+          borderRadius: "999px",
+          border: "none",
+          background: "#ff7a00",
           color: "white",
-          border: "none"
+          fontWeight: "bold",
+          cursor: "pointer",
+          boxShadow: "0 10px 20px rgba(255,122,0,0.3)"
         }}>
           Get Started
         </button>
       </section>
 
       {/* WHAT WE DO */}
-      <section id="what" style={{ padding: "60px 20px", textAlign: "center" }}>
-        <h2>What We Do</h2>
-        <p>
-          We help B2B companies generate qualified leads and book meetings with decision-makers.
-        </p>
-        <p>
-          Our team handles the entire front-end sales process—from identifying the right prospects to educating them and scheduling appointments—so your team can focus on closing high-value deals.
-        </p>
+      <section id="what" style={section}>
+        <h2 style={{ textAlign: "center", marginBottom: "40px" }}>What We Do</h2>
+
+        <div style={card}>
+          <p>
+            We help B2B companies generate qualified leads and book meetings with decision-makers.
+          </p>
+          <p style={{ marginTop: "10px", color: "#666" }}>
+            Our team handles the entire front-end sales process—from identifying prospects to scheduling appointments.
+          </p>
+        </div>
       </section>
 
       {/* HOW IT WORKS */}
-      <section id="how" style={{ padding: "60px 20px", textAlign: "center" }}>
-        <h2>How It Works</h2>
+      <section id="how" style={section}>
+        <h2 style={{ textAlign: "center", marginBottom: "40px" }}>How It Works</h2>
 
-        <p><b>Define Your Ideal Customer Profile</b></p>
-        <p>We align on your target customers</p>
-
-        <p><b>Outbound</b></p>
-        <p>We run personalized multi-channel campaigns</p>
-
-        <p><b>Qualify</b></p>
-        <p>We filter out unqualified prospects</p>
-
-        <p><b>Educate</b></p>
-        <p>We prepare prospects before the call</p>
-
-        <p><b>Book</b></p>
-        <p>We schedule qualified appointments</p>
-
-        <p><b>Close</b></p>
-        <p>You close the deal</p>
+        <div style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+          gap: "20px"
+        }}>
+          {[
+            ["Define ICP", "We align your ideal customers"],
+            ["Outbound", "Multi-channel campaigns"],
+            ["Qualify", "Filter serious leads"],
+            ["Educate", "Prepare prospects"],
+            ["Book", "Schedule meetings"],
+            ["Close", "You close deals"]
+          ].map((i, idx) => (
+            <div key={idx} style={card}>
+              <b style={{ color: "#ff7a00" }}>{i[0]}</b>
+              <p style={{ marginTop: "8px", color: "#666" }}>{i[1]}</p>
+            </div>
+          ))}
+        </div>
       </section>
 
       {/* INDUSTRIES */}
-      <section id="industries" style={{ padding: "60px 20px", textAlign: "center" }}>
-        <h2>Industries We Serve</h2>
-        <p>
-          Telecom • SaaS • Cybersecurity • Logistics • Cloud Services • VoIP • Internet Service Providers • Business Mobile Plans
-        </p>
+      <section id="industries" style={section}>
+        <h2 style={{ textAlign: "center", marginBottom: "40px" }}>Industries</h2>
+
+        <div style={{
+          display: "flex",
+          flexWrap: "wrap",
+          gap: "10px",
+          justifyContent: "center"
+        }}>
+          {["Telecom","SaaS","Cybersecurity","Logistics","Cloud","VoIP","ISP","Mobile"].map((i) => (
+            <span key={i} style={{
+              padding: "10px 16px",
+              background: "white",
+              borderRadius: "999px",
+              boxShadow: "0 5px 15px rgba(0,0,0,0.05)"
+            }}>
+              {i}
+            </span>
+          ))}
+        </div>
       </section>
 
       {/* QUALITY */}
-      <section id="quality" style={{ padding: "60px 20px", textAlign: "center" }}>
-        <h2>Quality Control</h2>
-        <p>We prioritize quality over quantity.</p>
-        <p>Every lead is pre-qualified based on agreed criteria.</p>
-        <p>Matched to your ideal customer profile.</p>
-        <p>Informed before the call.</p>
-        <p>Higher conversion rates and better use of your time.</p>
+      <section id="quality" style={section}>
+        <h2 style={{ textAlign: "center", marginBottom: "40px" }}>Quality Control</h2>
+
+        <div style={card}>
+          <p>✔ We prioritize quality over quantity</p>
+          <p>✔ Every lead is pre-qualified</p>
+          <p>✔ Matches your ICP</p>
+          <p>✔ Fully informed before calls</p>
+        </div>
       </section>
 
       {/* PRICING */}
-      <section id="pricing" style={{ padding: "60px 20px", textAlign: "center" }}>
-        <h2>Pricing</h2>
-        <p>Our pricing is tailored to your needs.</p>
-        <p>Depends on number of seats, lead volume, and targeting complexity.</p>
-        <p>We agree on all parameters upfront.</p>
+      <section id="pricing" style={section}>
+        <h2 style={{ textAlign: "center", marginBottom: "40px" }}>Pricing</h2>
+
+        <div style={card}>
+          <p>Custom pricing based on:</p>
+          <p>• Seats</p>
+          <p>• Lead volume</p>
+          <p>• Targeting complexity</p>
+        </div>
       </section>
 
       {/* GUARANTEE */}
-      <section id="guarantee" style={{ padding: "60px 20px", textAlign: "center" }}>
-        <h2>Guarantee</h2>
-        <p><b>80% Minimum Show Rate Guarantee</b></p>
-        <p>If performance drops below 80%, we will compensate you with additional meetings or credit.</p>
+      <section id="guarantee" style={section}>
+        <h2 style={{ textAlign: "center", marginBottom: "40px" }}>Guarantee</h2>
+
+        <div style={{
+          ...card,
+          border: "2px solid #ff7a00"
+        }}>
+          <b style={{ color: "#ff7a00" }}>80% Minimum Show Rate</b>
+          <p style={{ marginTop: "10px" }}>
+            If performance drops below 80%, we compensate with extra meetings or credit.
+          </p>
+        </div>
       </section>
 
       {/* CONTACT */}
-      <section id="contact" style={{ padding: "60px 20px", textAlign: "center" }}>
-        <h2>Contact Us</h2>
+      <section id="contact" style={section}>
+        <h2 style={{ textAlign: "center", marginBottom: "40px" }}>Contact</h2>
 
-        <p>Phone: 02 7265 1399</p>
-        <p>Email: info@lea-dex.com</p>
+        <div style={{ ...card, textAlign: "center" }}>
+          <p>📞 02 7265 1399</p>
+          <p>✉️ info@lea-dex.com</p>
 
-        <div style={{ marginTop: "20px" }}>
-          <input placeholder="Name" /><br /><br />
-          <input placeholder="Email" /><br /><br />
-          <textarea placeholder="Message" /><br /><br />
-          <button style={{
-            padding: "10px 20px",
-            background: "black",
-            color: "white",
-            border: "none"
-          }}>
-            Send
-          </button>
+          <div style={{ marginTop: "20px" }}>
+            <input placeholder="Name" style={{ margin: "5px", padding: "8px" }} />
+            <input placeholder="Email" style={{ margin: "5px", padding: "8px" }} />
+            <br />
+            <textarea placeholder="Message" style={{ marginTop: "10px", padding: "8px", width: "80%" }} />
+            <br />
+
+            <button style={{
+              marginTop: "10px",
+              padding: "10px 20px",
+              background: "#ff7a00",
+              border: "none",
+              color: "white",
+              borderRadius: "8px"
+            }}>
+              Send
+            </button>
+          </div>
         </div>
-
-        <p style={{ fontSize: "12px", marginTop: "20px" }}>
-          We'll get back to you shortly
-        </p>
       </section>
 
       {/* FOOTER */}
-      <footer style={{ textAlign: "center", padding: "20px", fontSize: "12px" }}>
+      <footer style={{ textAlign: "center", padding: "30px", fontSize: "12px", color: "#777" }}>
         © 2026 LeadEX
       </footer>
 
