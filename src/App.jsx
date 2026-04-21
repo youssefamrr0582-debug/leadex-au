@@ -43,7 +43,7 @@ export default function App() {
 
   return (
     <div style={{
-      fontFamily: "Inter, Arial",
+      fontFamily: "Arial",
       color: "white",
       background: "radial-gradient(circle at top, #141414, #000)"
     }}>
@@ -65,12 +65,7 @@ export default function App() {
 
         <div style={{ display: "flex", gap: "20px", fontSize: "13px" }}>
           {["What","How","Industries","Pricing","Guarantee","Contact"].map((i) => (
-            <a key={i} href={`#${i.toLowerCase()}`}
-              style={{
-                color: "#bbb",
-                textDecoration: "none",
-                transition: "0.3s"
-              }}>
+            <a key={i} href={`#${i.toLowerCase()}`} style={{ color: "#bbb", textDecoration: "none" }}>
               {i}
             </a>
           ))}
@@ -92,11 +87,7 @@ export default function App() {
           <span style={{ color: "#ff7a00" }}>Start Closing Deals.</span>
         </h1>
 
-        <p style={{
-          color: "#aaa",
-          maxWidth: "720px",
-          margin: "0 auto"
-        }}>
+        <p style={{ color: "#aaa", maxWidth: "720px", margin: "0 auto" }}>
           We generate high-intent B2B leads and book qualified meetings so your sales team focuses only on closing revenue.
         </p>
 
@@ -120,8 +111,13 @@ export default function App() {
         <h2 style={{ textAlign: "center", marginBottom: "40px" }}>What We Do</h2>
 
         <div style={card}>
-          We act as your outsourced growth engine.<br /><br />
-          From prospecting → outreach → qualification → booking meetings, we handle the entire top-of-funnel so your closers only close.
+          <p>
+            We help B2B companies generate qualified leads and book meetings with decision-makers.
+          </p>
+          <br />
+          <p style={{ color: "#aaa" }}>
+            Our team handles the entire front-end sales process—from identifying the right prospects to educating them and scheduling appointments—so your team can focus on closing high-value deals.
+          </p>
         </div>
       </section>
 
@@ -135,12 +131,12 @@ export default function App() {
           gap: "18px"
         }}>
           {[
-            ["ICP Strategy","Define perfect customer profile"],
-            ["Outbound Engine","Multi-channel outreach system"],
-            ["Lead Filtering","Only high-quality prospects"],
-            ["Warm Up","Educated before call"],
-            ["Booking","Calendar-ready meetings"],
-            ["Revenue","Your team closes deals"]
+            ["Define ICP","We align your target customers"],
+            ["Outbound","Multi-channel campaigns"],
+            ["Qualify","Filter unqualified prospects"],
+            ["Educate","Prepare prospects before calls"],
+            ["Book","Schedule meetings"],
+            ["Close","You close deals"]
           ].map((i) => (
             <div key={i[0]} style={card}>
               <b style={{ color: "#ff7a00" }}>{i[0]}</b>
@@ -152,7 +148,7 @@ export default function App() {
 
       {/* INDUSTRIES */}
       <section id="industries" style={section}>
-        <h2 style={{ textAlign: "center", marginBottom: "40px" }}>Industries</h2>
+        <h2 style={{ textAlign: "center", marginBottom: "40px" }}>Industries We Serve</h2>
 
         <div style={{
           display: "flex",
@@ -160,7 +156,16 @@ export default function App() {
           justifyContent: "center",
           gap: "12px"
         }}>
-          {["Telecom","SaaS","Cybersecurity","Cloud","VoIP","Fintech","Logistics","ISPs"].map((i) => (
+          {[
+            "Telecom",
+            "SaaS",
+            "Cybersecurity",
+            "Logistics",
+            "Cloud Services",
+            "VoIP",
+            "Internet Service Providers",
+            "Business Mobile Plans"
+          ].map((i) => (
             <span key={i} style={{
               padding: "10px 18px",
               borderRadius: "999px",
@@ -178,12 +183,14 @@ export default function App() {
         <h2 style={{ textAlign: "center", marginBottom: "40px" }}>Pricing</h2>
 
         <div style={card}>
-          Fully customized based on:
-          <br /><br />
-          • Volume<br />
-          • Target market<br />
-          • Sales capacity<br /><br />
-          We design the system, not just the service.
+          <p>Our pricing is tailored to your needs.</p>
+          <br />
+          <p>It depends on:</p>
+          <p>• Number of seats (appointment capacity)</p>
+          <p>• Lead volume</p>
+          <p>• Targeting complexity</p>
+          <br />
+          <p>We align everything upfront for clarity and scalability.</p>
         </div>
       </section>
 
@@ -194,18 +201,18 @@ export default function App() {
         <div style={{
           ...card,
           border: "1px solid #ff7a00",
-          boxShadow: "0 0 30px rgba(255,122,0,0.15)"
+          boxShadow: "0 0 25px rgba(255,122,0,0.15)"
         }}>
-          <b style={{ color: "#ff7a00" }}>80% Show Rate Guarantee</b>
-          <p style={{ color: "#aaa" }}>
-            If performance drops below 80%, we compensate with extra qualified meetings or credit.
+          <b style={{ color: "#ff7a00" }}>80% Minimum Show Rate Guarantee</b>
+          <p style={{ color: "#aaa", marginTop: "10px" }}>
+            If performance drops below 80%, we compensate you with extra meetings or credit.
           </p>
         </div>
       </section>
 
       {/* CONTACT */}
       <section id="contact" style={section}>
-        <h2 style={{ textAlign: "center", marginBottom: "40px" }}>Contact</h2>
+        <h2 style={{ textAlign: "center", marginBottom: "40px" }}>Contact Us</h2>
 
         <div style={card}>
           <p>📞 02 7265 1399</p>
@@ -213,9 +220,17 @@ export default function App() {
 
           <div style={{ marginTop: "20px" }}>
             <input placeholder="Name" style={{ margin: "5px", padding: "10px" }} />
+            <input placeholder="Company Name" style={{ margin: "5px", padding: "10px" }} />
+            <input placeholder="Position" style={{ margin: "5px", padding: "10px" }} />
             <input placeholder="Email" style={{ margin: "5px", padding: "10px" }} />
+
             <br />
-            <textarea placeholder="Message" style={{ marginTop: "10px", padding: "10px", width: "80%" }} />
+
+            <textarea
+              placeholder="Message"
+              style={{ marginTop: "10px", padding: "10px", width: "80%", height: "120px" }}
+            />
+
             <br />
 
             <button style={{
@@ -231,6 +246,10 @@ export default function App() {
             </button>
           </div>
         </div>
+
+        <p style={{ textAlign: "center", marginTop: "20px", color: "#777" }}>
+          We'll get back to you shortly
+        </p>
       </section>
 
       {/* FOOTER */}
