@@ -1,153 +1,170 @@
-import { useEffect, useState } from "react";
-import "./styles.css";
+body {
+  margin: 0;
+  font-family: Inter, Arial;
+  background: #f7f4ef; /* off-white */
+  color: #2b2b2b;
+}
 
-export default function App() {
-  const [loaded, setLoaded] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+/* NAV */
+.nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 18px 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(247,244,239,0.8);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid #e9e9e9;
+  z-index: 100;
+}
 
-  useEffect(() => {
-    const timer = setTimeout(() => setLoaded(true), 500);
+.logo {
+  color: #ff7a00;
+  font-weight: 800;
+  font-size: 20px;
+}
 
-    const onScroll = () => setScrolled(window.scrollY > 40);
+.links {
+  display: flex;
+  gap: 22px;
+}
 
-    window.addEventListener("scroll", onScroll);
+.links a {
+  text-decoration: none;
+  color: #666;
+  font-size: 14px;
+}
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) entry.target.classList.add("active");
-      });
-    }, { threshold: 0.1 });
+.links a:hover {
+  color: #ff7a00;
+}
 
-    document.querySelectorAll(".revealOnScroll").forEach((el) =>
-      observer.observe(el)
-    );
+/* HERO */
+.hero {
+  text-align: center;
+  padding: 180px 20px 120px;
+}
 
-    return () => {
-      clearTimeout(timer);
-      window.removeEventListener("scroll", onScroll);
-      observer.disconnect();
-    };
-  }, []);
+.hero h1 {
+  font-size: 58px;
+  line-height: 1.1;
+  font-weight: 800;
+}
 
-  if (!loaded) return <div className="loader">LeadEX</div>;
+.hero span {
+  color: #ff7a00;
+}
 
-  return (
-    <div className="app">
+.hero p {
+  color: #666;
+  max-width: 700px;
+  margin: 20px auto;
+  font-size: 16px;
+}
 
-      {/* NAV */}
-      <header className={`nav ${scrolled ? "navScrolled" : ""}`}>
-        <b className="logo">LeadEX</b>
+/* CTA */
+.cta {
+  display: inline-block;
+  padding: 14px 32px;
+  border-radius: 999px;
+  background: #ff7a00;
+  color: white;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: 600;
+  margin-top: 10px;
+  transition: 0.3s;
+}
 
-        <div className="links">
-          <a href="#what">What</a>
-          <a href="#how">How</a>
-          <a href="#industries">Industries</a>
-          <a href="#pricing">Pricing</a>
-          <a href="#contact">Contact</a>
-        </div>
-      </header>
+.cta:hover {
+  transform: translateY(-2px);
+}
 
-      {/* HERO */}
-      <section className="hero">
-        <h1>
-          Stop Chasing Leads.<br />
-          <span>Start Closing Deals.</span>
-        </h1>
+/* SECTION */
+.section {
+  padding: 90px 20px;
+  max-width: 1100px;
+  margin: auto;
+  text-align: center;
+}
 
-        <p>
-          We generate high-quality B2B leads and book meetings with decision-makers.
-        </p>
+h2 {
+  font-size: 32px;
+  margin-bottom: 30px;
+  font-weight: 700;
+}
 
-        <a href="#contact" className="cta">
-          Get Started
-        </a>
-      </section>
+/* CARD */
+.card {
+  background: white;
+  border: 1px solid #eee;
+  border-radius: 16px;
+  padding: 22px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+  text-align: left;
+}
 
-      {/* WHAT */}
-      <section id="what" className="section revealOnScroll">
-        <h2>What We Do</h2>
-        <div className="card">
-          We help B2B companies generate qualified leads and book meetings with decision-makers.
-          Our team handles the full outbound process so your sales team only closes deals.
-        </div>
-      </section>
+/* GRID */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
 
-      {/* HOW */}
-      <section id="how" className="section revealOnScroll">
-        <h2>How It Works</h2>
+/* CHIPS */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
 
-        <div className="grid">
-          {[
-            ["Define ICP", "Target customers"],
-            ["Outbound", "Campaigns"],
-            ["Qualify", "Filter leads"],
-            ["Educate", "Warm prospects"],
-            ["Book", "Meetings"],
-            ["Close", "Revenue"]
-          ].map((i, idx) => (
-            <div key={idx} className="card hover">
-              <b>{i[0]}</b>
-              <p>{i[1]}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+.chip {
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: white;
+  border: 1px solid #ddd;
+  color: #444;
+}
 
-      {/* INDUSTRIES */}
-      <section id="industries" className="section revealOnScroll">
-        <h2>Industries</h2>
+/* FORM */
+.formCard {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
 
-        <div className="chips">
-          {["Telecom","SaaS","Cybersecurity","Cloud","VoIP","Logistics","ISPs"].map((i, idx) => (
-            <span key={idx} className="chip">{i}</span>
-          ))}
-        </div>
-      </section>
+input, textarea {
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+}
 
-      {/* PRICING */}
-      <section id="pricing" className="section revealOnScroll">
-        <h2>Pricing</h2>
+textarea {
+  height: 120px;
+}
 
-        <div className="card">
-          Tailored pricing based on:
-          <br /><br />
-          • Volume<br />
-          • Targeting complexity<br />
-          • Seats required
-        </div>
-      </section>
+/* CONTACT INFO */
+.contactInfo {
+  margin-top: 15px;
+  color: #666;
+  font-size: 14px;
+}
 
-      {/* CONTACT */}
-      <section id="contact" className="section revealOnScroll">
-        <h2>Contact</h2>
+/* FOOTER */
+.footer {
+  text-align: center;
+  padding: 40px;
+  color: #888;
+  font-size: 13px;
+}
 
-        <div className="card formCard">
-
-          <div className="contactInfo">
-            📞 02 7265 1399 <br />
-            ✉️ info@lea-dex.com
-          </div>
-
-          <div className="form">
-            <input placeholder="Name" />
-            <input placeholder="Company Name" />
-            <input placeholder="Position" />
-            <input placeholder="Email" />
-            <textarea placeholder="Message"></textarea>
-
-            <button className="cta">Send Message</button>
-          </div>
-
-        </div>
-
-        <p className="subtext">We'll get back to you shortly</p>
-      </section>
-
-      {/* FOOTER */}
-      <footer className="footer">
-        © 2026 LeadEX
-      </footer>
-
-    </div>
-  );
+/* HOVER */
+.card:hover {
+  border-color: #ff7a00;
+  transition: 0.3s;
 }
