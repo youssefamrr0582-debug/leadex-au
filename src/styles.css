@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:wght@500;700&display=swap');
 
+/* =======================
+   BASE
+======================= */
 html {
   scroll-behavior: smooth;
 }
@@ -7,13 +10,55 @@ html {
 body {
   margin: 0;
   font-family: Inter, system-ui, Arial;
-  background: #f7f4ef; /* off-white ثابت */
+  background: #f7f4ef; /* OFF-WHITE CORE */
   color: #1a1a1a;
   line-height: 1.8;
   -webkit-font-smoothing: antialiased;
+  position: relative;
+  overflow-x: hidden;
 }
 
-/* NAV */
+/* =======================
+   CINEMATIC LIGHTING (3D FEEL)
+======================= */
+
+/* orange ambient glow */
+body::before {
+  content: "";
+  position: fixed;
+  width: 650px;
+  height: 650px;
+  background: radial-gradient(circle, rgba(255,122,0,0.18), transparent 60%);
+  top: -220px;
+  left: -180px;
+  filter: blur(70px);
+  animation: floatLight1 12s ease-in-out infinite;
+  z-index: 0;
+}
+
+/* soft neutral shadow light */
+body::after {
+  content: "";
+  position: fixed;
+  width: 750px;
+  height: 750px;
+  background: radial-gradient(circle, rgba(0,0,0,0.06), transparent 60%);
+  bottom: -260px;
+  right: -220px;
+  filter: blur(90px);
+  animation: floatLight2 14s ease-in-out infinite;
+  z-index: 0;
+}
+
+/* keep content above lights */
+.app, .nav, .hero, .section {
+  position: relative;
+  z-index: 2;
+}
+
+/* =======================
+   NAV
+======================= */
 .nav {
   position: fixed;
   top: 0;
@@ -23,10 +68,10 @@ body {
   justify-content: space-between;
   align-items: center;
   background: rgba(247, 244, 239, 0.75);
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(22px);
   border-bottom: 1px solid rgba(0,0,0,0.05);
   z-index: 100;
-  transition: 0.3s;
+  transition: 0.3s ease;
 }
 
 .nav:hover {
@@ -40,7 +85,9 @@ body {
   letter-spacing: 1px;
 }
 
-/* LINKS */
+/* =======================
+   LINKS
+======================= */
 .links {
   display: flex;
   gap: 22px;
@@ -59,8 +106,8 @@ body {
 .links a::after {
   content: "";
   position: absolute;
-  left: 0;
   bottom: -4px;
+  left: 0;
   width: 0%;
   height: 1px;
   background: #ff7a00;
@@ -75,7 +122,9 @@ body {
   width: 100%;
 }
 
-/* HERO */
+/* =======================
+   HERO
+======================= */
 .hero {
   text-align: center;
   padding: 240px 20px 140px;
@@ -85,15 +134,29 @@ body {
 
 .hero h1 {
   font-family: "Playfair Display", serif;
-  font-size: 78px;
+  font-size: 82px;
   font-weight: 700;
-  letter-spacing: -2px;
+  letter-spacing: -2.5px;
   line-height: 1;
   animation: fadeUp 1s ease forwards, floatText 6s ease-in-out infinite;
+  background: linear-gradient(180deg, #1a1a1a, #333);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .hero span {
   color: #ff7a00;
+  position: relative;
+}
+
+.hero span::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: rgba(255,122,0,0.3);
+  bottom: -8px;
+  left: 0;
 }
 
 .hero p {
@@ -103,7 +166,7 @@ body {
   font-size: 16px;
 }
 
-/* HERO GLOW */
+/* glow core */
 .hero::before {
   content: "";
   position: absolute;
@@ -115,10 +178,12 @@ body {
   top: -120px;
   left: 50%;
   transform: translateX(-50%);
-  animation: floatGlow 8s ease-in-out infinite;
+  animation: floatGlow 10s ease-in-out infinite;
 }
 
-/* CTA */
+/* =======================
+   CTA
+======================= */
 .cta {
   display: inline-block;
   padding: 14px 34px;
@@ -127,22 +192,25 @@ body {
   color: #ff7a00;
   text-decoration: none;
   font-weight: 600;
+  transition: 0.3s;
   position: relative;
   overflow: hidden;
-  transition: 0.3s;
 }
 
 .cta:hover {
   background: #ff7a00;
-  color: white;
+  color: #fff;
   transform: translateY(-3px);
 }
 
-/* SECTIONS */
+/* =======================
+   SECTIONS
+======================= */
 .section {
   padding: 110px 20px;
   max-width: 980px;
   margin: auto;
+  position: relative;
 }
 
 .section h2 {
@@ -150,7 +218,6 @@ body {
   font-size: 40px;
   text-align: center;
   margin-bottom: 40px;
-  position: relative;
 }
 
 .section h2::after {
@@ -161,10 +228,11 @@ body {
   display: block;
   margin: 12px auto 0;
   opacity: 0.5;
-  border-radius: 999px;
 }
 
-/* CARD */
+/* =======================
+   CARD (3D + PREMIUM)
+======================= */
 .card {
   background: rgba(255,255,255,0.85);
   border: 1px solid rgba(0,0,0,0.06);
@@ -173,18 +241,53 @@ body {
   font-size: 15px;
   color: #444;
   box-shadow: 0 15px 45px rgba(0,0,0,0.05);
-  transition: 0.35s;
+  transition: 0.4s ease;
   transform-style: preserve-3d;
+  position: relative;
+  overflow: hidden;
 }
 
-/* 3D HOVER */
+/* shine sweep */
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,122,0,0.08),
+    transparent
+  );
+  transform: translateX(-100%);
+  transition: 0.6s;
+}
+
+.card:hover::before {
+  transform: translateX(100%);
+}
+
 .card:hover {
-  transform: perspective(900px) rotateX(6deg) rotateY(-6deg) translateY(-6px);
-  box-shadow: 0 25px 70px rgba(255,122,0,0.12);
-  border-color: rgba(255,122,0,0.4);
+  transform: perspective(900px) rotateX(6deg) rotateY(-6deg) translateY(-8px);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.08);
+  border-color: rgba(255,122,0,0.35);
 }
 
-/* INPUTS */
+/* card text hierarchy */
+.card b {
+  color: #ff7a00;
+  font-size: 16px;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.card p {
+  color: #5a5a5a;
+  font-size: 14px;
+}
+
+/* =======================
+   INPUTS
+======================= */
 input, textarea {
   width: 100%;
   padding: 12px;
@@ -201,7 +304,9 @@ input:focus, textarea:focus {
   border-bottom: 1px solid #ff7a00;
 }
 
-/* FOOTER */
+/* =======================
+   FOOTER
+======================= */
 .footer {
   text-align: center;
   padding: 70px;
@@ -209,7 +314,9 @@ input:focus, textarea:focus {
   color: #888;
 }
 
-/* ANIMATIONS */
+/* =======================
+   ANIMATIONS
+======================= */
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(40px); }
   to { opacity: 1; transform: translateY(0); }
@@ -223,4 +330,14 @@ input:focus, textarea:focus {
 @keyframes floatText {
   0%,100% { transform: translateY(0px); }
   50% { transform: translateY(-8px); }
+}
+
+@keyframes floatLight1 {
+  0%,100% { transform: translate(0,0) scale(1); }
+  50% { transform: translate(120px, 80px) scale(1.1); }
+}
+
+@keyframes floatLight2 {
+  0%,100% { transform: translate(0,0) scale(1); }
+  50% { transform: translate(-100px, -60px) scale(1.15); }
 }
