@@ -39,9 +39,7 @@ export default function App() {
           We generate high-quality B2B leads and book decision-maker meetings so your sales team only closes revenue.
         </p>
 
-        <a href="#contact" className="cta">
-          Get Started
-        </a>
+        <a href="#contact" className="cta">Get Started</a>
       </section>
 
       {/* WHAT */}
@@ -54,22 +52,25 @@ export default function App() {
         </div>
       </section>
 
-      {/* HOW */}
+      {/* HOW - STEPS */}
       <section id="how" className="section">
         <h2 className="title">How It Works</h2>
 
-        <div className="grid">
+        <div className="steps">
           {[
-            ["Define ICP", "We align on your target customers"],
-            ["Outbound", "Multi-channel outreach campaigns"],
-            ["Qualify", "Filter and verify prospects"],
-            ["Educate", "Warm up before calls"],
-            ["Book", "Schedule meetings"],
+            ["Define ICP", "We align on your ideal customer profile"],
+            ["Outbound", "We run targeted multi-channel campaigns"],
+            ["Qualify", "We filter and validate leads"],
+            ["Educate", "We warm up prospects before calls"],
+            ["Book", "We schedule qualified meetings"],
             ["Close", "You close revenue"]
           ].map((i, idx) => (
-            <div key={idx} className="card">
-              <b>{i[0]}</b>
-              <p>{i[1]}</p>
+            <div key={idx} className="step">
+              <div className="step-number">{idx + 1}</div>
+              <div>
+                <b>{i[0]}</b>
+                <p>{i[1]}</p>
+              </div>
             </div>
           ))}
         </div>
@@ -81,20 +82,20 @@ export default function App() {
 
         <div className="grid">
           {[
-            "Telecom",
-            "SaaS",
-            "Cybersecurity",
-            "Cloud Services",
-            "VoIP",
-            "Logistics",
-            "ISPs",
-            "Business Mobile",
-            "Solar",
-            "Commercial Cleaning"
+            ["Telecom", "Driving B2B growth through targeted outreach and pipeline building."],
+            ["Cybersecurity", "Connecting you with high-level decision-makers ready for secure solutions."],
+            ["Cloud Services", "Generating meetings with companies ready to scale and migrate."],
+            ["VoIP", "Helping you reach businesses looking to cut costs and upgrade systems."],
+            ["Logistics", "Linking you with partners and clients across the supply chain."],
+            ["IT Managed Services", "Ongoing IT support and management clients."],
+            ["Data Connectivity", "Reliable high-speed network solutions."],
+            ["Business Mobile", "Long-term corporate mobile contracts."],
+            ["Solar", "Qualified leads ready for installation."],
+            ["Commercial Cleaning", "Recurring service contracts."]
           ].map((i, idx) => (
             <div key={idx} className="card">
-              <b>{i}</b>
-              <p>Appointment setting & lead generation</p>
+              <b>{i[0]}</b>
+              <p>{i[1]}</p>
             </div>
           ))}
         </div>
