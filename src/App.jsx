@@ -14,23 +14,32 @@ export default function App() {
 
     window.addEventListener("scroll", onScroll);
 
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("active");
+        }
+      });
+    }, { threshold: 0.1 });
+
+    const elements = document.querySelectorAll(".revealOnScroll");
+    elements.forEach((el) => observer.observe(el));
+
     return () => {
       clearTimeout(timer);
       window.removeEventListener("scroll", onScroll);
+      observer.disconnect();
     };
   }, []);
 
-  if (!loaded) {
-    return <div className="loader">LeadEX</div>;
-  }
+  if (!loaded) return <div className="loader">LeadEX</div>;
 
   return (
-    <div className="app">
+    <div className="app bgShapes">
 
       {/* NAV */}
       <header className={`nav ${scrolled ? "navScrolled" : ""}`}>
         <b className="logo">LeadEX</b>
-
         <div className="links">
           <a href="#what">What We Do</a>
           <a href="#how">How It Works</a>
@@ -43,24 +52,23 @@ export default function App() {
 
       {/* HERO */}
       <section className="hero">
-        <h1>
+        <h1 className="reveal">
           Stop Chasing Leads.<br />
           <span>Start Closing Deals.</span>
         </h1>
 
-        <p>
+        <p className="reveal delay1">
           We generate qualified B2B leads and book decision-maker meetings so your sales team only closes.
         </p>
 
-        <a href="#contact" className="cta">
+        <a href="#contact" className="cta reveal delay2">
           Get Started
         </a>
       </section>
 
       {/* WHAT */}
-      <section id="what" className="section">
+      <section id="what" className="section revealOnScroll">
         <h2>What We Do</h2>
-
         <div className="card">
           We help B2B companies generate qualified leads and book meetings with decision-makers.
           <br /><br />
@@ -69,78 +77,53 @@ export default function App() {
       </section>
 
       {/* HOW */}
-      <section id="how" className="section">
+      <section id="how" className="section revealOnScroll">
         <h2>How It Works</h2>
-
         <div className="grid">
-          <div className="card hover">
-            <b>Define Your Ideal Customer Profile</b>
-            <p>We align on your target customers</p>
-          </div>
-
-          <div className="card hover">
-            <b>Outreach</b>
-            <p>We run personalized multi-channel campaigns</p>
-          </div>
-
-          <div className="card hover">
-            <b>Qualify</b>
-            <p>We filter out unqualified prospects</p>
-          </div>
-
-          <div className="card hover">
-            <b>Educate</b>
-            <p>We prepare prospects before the call</p>
-          </div>
-
-          <div className="card hover">
-            <b>Book</b>
-            <p>We schedule qualified appointments</p>
-          </div>
-
-          <div className="card hover">
-            <b>Close</b>
-            <p>You close the deal</p>
-          </div>
+          {[
+            ["Define ICP","We align on your target customers"],
+            ["Outreach","We run personalized multi-channel campaigns"],
+            ["Qualify","We filter out unqualified prospects"],
+            ["Educate","We prepare prospects before the call"],
+            ["Book","We schedule qualified appointments"],
+            ["Close","You close the deal"]
+          ].map((i, idx) => (
+            <div key={idx} className="card hover">
+              <b>{i[0]}</b>
+              <p>{i[1]}</p>
+            </div>
+          ))}
         </div>
       </section>
 
       {/* INDUSTRIES */}
-      <section id="industries" className="section">
+      <section id="industries" className="section revealOnScroll">
         <h2>Industries We Serve</h2>
-
         <div className="chips">
-          <span className="chip">Telecom</span>
-          <span className="chip">SaaS</span>
-          <span className="chip">Cybersecurity</span>
-          <span className="chip">Logistics</span>
-          <span className="chip">Cloud Services</span>
-          <span className="chip">VoIP</span>
-          <span className="chip">Internet Service Providers</span>
-          <span className="chip">Business Mobile Plans</span>
+          {[
+            "Telecom","SaaS","Cybersecurity","Logistics",
+            "Cloud Services","VoIP","Internet Service Providers","Business Mobile Plans"
+          ].map((i, idx) => (
+            <span key={idx} className="chip">{i}</span>
+          ))}
         </div>
       </section>
 
       {/* PRICING */}
-      <section id="pricing" className="section">
+      <section id="pricing" className="section revealOnScroll">
         <h2>Pricing</h2>
-
         <div className="card">
           Our pricing is tailored to your needs.
           <br /><br />
-          It depends on:
-          <br />• Number of seats  
-          <br />• Lead volume  
-          <br />• Targeting complexity  
-          <br /><br />
-          We align everything upfront for clear expectations and scalable results.
+          • Number of seats<br />
+          • Lead volume<br />
+          • Targeting complexity
         </div>
       </section>
 
       {/* GUARANTEE */}
-      <section id="guarantee" className="section">
+      <section id="guarantee" className="section revealOnScroll">
         <h2>Guarantee</h2>
-
         <div className="card highlight">
           <b>80% Minimum Show Rate Guarantee</b>
           <p>If performance drops below 80%, we compensate with additional meetings or credit.</p>
@@ -148,17 +131,29 @@ export default function App() {
       </section>
 
       {/* CONTACT */}
-      <section id="contact" className="section">
+      <section id="contact" className="section revealOnScroll">
         <h2>Contact Us</h2>
 
-        <div className="card">
-          📞 02 7265 1399 <br />
-          ✉️ info@lea-dex.com
+        <div className="card formCard">
+
+          <div className="contactInfo">
+            📞 02 7265 1399 <br />
+            ✉️ info@lea-dex.com
+          </div>
+
+          <div className="form">
+            <input placeholder="Name" />
+            <input placeholder="Company Name" />
+            <input placeholder="Position" />
+            <input placeholder="Email" />
+            <textarea placeholder="Message"></textarea>
+
+            <button className="cta">Send Message</button>
+          </div>
+
         </div>
 
-        <p className="subtext">
-          We'll get back to you shortly
-        </p>
+        <p className="subtext">We'll get back to you shortly</p>
       </section>
 
       <footer className="footer">
