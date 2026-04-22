@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:wght@500;700&display=swap');
 
-/* =======================
+/* ======================
    BASE
-======================= */
+====================== */
 html {
   scroll-behavior: smooth;
 }
@@ -10,7 +10,7 @@ html {
 body {
   margin: 0;
   font-family: Inter, system-ui, Arial;
-  background: #f7f4ef; /* OFF-WHITE CORE */
+  background: #f7f4ef;
   color: #1a1a1a;
   line-height: 1.8;
   -webkit-font-smoothing: antialiased;
@@ -18,11 +18,9 @@ body {
   overflow-x: hidden;
 }
 
-/* =======================
-   CINEMATIC LIGHTING (3D FEEL)
-======================= */
-
-/* orange ambient glow */
+/* ======================
+   LIGHTING (3D FEEL)
+====================== */
 body::before {
   content: "";
   position: fixed;
@@ -36,7 +34,6 @@ body::before {
   z-index: 0;
 }
 
-/* soft neutral shadow light */
 body::after {
   content: "";
   position: fixed;
@@ -50,15 +47,14 @@ body::after {
   z-index: 0;
 }
 
-/* keep content above lights */
 .app, .nav, .hero, .section {
   position: relative;
   z-index: 2;
 }
 
-/* =======================
+/* ======================
    NAV
-======================= */
+====================== */
 .nav {
   position: fixed;
   top: 0;
@@ -74,20 +70,15 @@ body::after {
   transition: 0.3s ease;
 }
 
-.nav:hover {
-  transform: translateY(1px);
-}
-
 .logo {
   font-weight: 900;
   font-size: 18px;
   color: #ff7a00;
-  letter-spacing: 1px;
 }
 
-/* =======================
+/* ======================
    LINKS
-======================= */
+====================== */
 .links {
   display: flex;
   gap: 22px;
@@ -100,7 +91,6 @@ body::after {
   color: #666;
   text-decoration: none;
   position: relative;
-  transition: 0.2s;
 }
 
 .links a::after {
@@ -122,9 +112,9 @@ body::after {
   width: 100%;
 }
 
-/* =======================
+/* ======================
    HERO
-======================= */
+====================== */
 .hero {
   text-align: center;
   padding: 240px 20px 140px;
@@ -138,25 +128,12 @@ body::after {
   font-weight: 700;
   letter-spacing: -2.5px;
   line-height: 1;
-  animation: fadeUp 1s ease forwards, floatText 6s ease-in-out infinite;
-  background: linear-gradient(180deg, #1a1a1a, #333);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  animation: fadeUp 1s ease forwards, floatText 5s ease-in-out infinite;
 }
 
 .hero span {
   color: #ff7a00;
-  position: relative;
-}
-
-.hero span::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 2px;
-  background: rgba(255,122,0,0.3);
-  bottom: -8px;
-  left: 0;
+  animation: pulseOrange 3s ease-in-out infinite;
 }
 
 .hero p {
@@ -166,7 +143,6 @@ body::after {
   font-size: 16px;
 }
 
-/* glow core */
 .hero::before {
   content: "";
   position: absolute;
@@ -181,9 +157,9 @@ body::after {
   animation: floatGlow 10s ease-in-out infinite;
 }
 
-/* =======================
+/* ======================
    CTA
-======================= */
+====================== */
 .cta {
   display: inline-block;
   padding: 14px 34px;
@@ -193,8 +169,6 @@ body::after {
   text-decoration: none;
   font-weight: 600;
   transition: 0.3s;
-  position: relative;
-  overflow: hidden;
 }
 
 .cta:hover {
@@ -203,14 +177,13 @@ body::after {
   transform: translateY(-3px);
 }
 
-/* =======================
+/* ======================
    SECTIONS
-======================= */
+====================== */
 .section {
   padding: 110px 20px;
   max-width: 980px;
   margin: auto;
-  position: relative;
 }
 
 .section h2 {
@@ -220,74 +193,73 @@ body::after {
   margin-bottom: 40px;
 }
 
-.section h2::after {
-  content: "";
-  width: 60px;
-  height: 2px;
-  background: #ff7a00;
-  display: block;
-  margin: 12px auto 0;
-  opacity: 0.5;
-}
-
-/* =======================
-   CARD (3D + PREMIUM)
-======================= */
+/* ======================
+   CARD (ALIVE + 3D)
+====================== */
 .card {
   background: rgba(255,255,255,0.85);
   border: 1px solid rgba(0,0,0,0.06);
   border-radius: 18px;
   padding: 28px;
-  font-size: 15px;
   color: #444;
-  box-shadow: 0 15px 45px rgba(0,0,0,0.05);
-  transition: 0.4s ease;
-  transform-style: preserve-3d;
   position: relative;
   overflow: hidden;
+  transition: 0.4s ease;
+  animation: cardFloat 6s ease-in-out infinite;
 }
 
-/* shine sweep */
+/* orange glow */
+.card::after {
+  content: "";
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background: rgba(255,122,0,0.12);
+  filter: blur(50px);
+  top: -60px;
+  right: -60px;
+  opacity: 0;
+  transition: 0.4s;
+}
+
+/* shine */
 .card::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    120deg,
-    transparent,
-    rgba(255,122,0,0.08),
-    transparent
-  );
-  transform: translateX(-100%);
+  background: linear-gradient(120deg, transparent, rgba(255,122,0,0.08), transparent);
+  transform: translateX(-120%);
   transition: 0.6s;
 }
 
-.card:hover::before {
-  transform: translateX(100%);
-}
-
 .card:hover {
-  transform: perspective(900px) rotateX(6deg) rotateY(-6deg) translateY(-8px);
-  box-shadow: 0 30px 80px rgba(0,0,0,0.08);
+  transform: translateY(-10px) scale(1.02);
   border-color: rgba(255,122,0,0.35);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.08);
 }
 
-/* card text hierarchy */
+.card:hover::before {
+  transform: translateX(120%);
+}
+
+.card:hover::after {
+  opacity: 1;
+}
+
+/* card text */
 .card b {
   color: #ff7a00;
-  font-size: 16px;
   display: block;
   margin-bottom: 6px;
 }
 
 .card p {
   color: #5a5a5a;
-  font-size: 14px;
 }
 
-/* =======================
+/* ======================
    INPUTS
-======================= */
+====================== */
 input, textarea {
   width: 100%;
   padding: 12px;
@@ -295,18 +267,16 @@ input, textarea {
   border: none;
   border-bottom: 1px solid #ddd;
   background: transparent;
-  font-size: 14px;
   outline: none;
-  transition: 0.2s;
 }
 
 input:focus, textarea:focus {
   border-bottom: 1px solid #ff7a00;
 }
 
-/* =======================
+/* ======================
    FOOTER
-======================= */
+====================== */
 .footer {
   text-align: center;
   padding: 70px;
@@ -314,9 +284,9 @@ input:focus, textarea:focus {
   color: #888;
 }
 
-/* =======================
+/* ======================
    ANIMATIONS
-======================= */
+====================== */
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(40px); }
   to { opacity: 1; transform: translateY(0); }
@@ -330,6 +300,16 @@ input:focus, textarea:focus {
 @keyframes floatText {
   0%,100% { transform: translateY(0px); }
   50% { transform: translateY(-8px); }
+}
+
+@keyframes pulseOrange {
+  0%,100% { transform: translateY(0); opacity: 1; }
+  50% { transform: translateY(-3px); opacity: 0.85; }
+}
+
+@keyframes cardFloat {
+  0%,100% { transform: translateY(0px); }
+  50% { transform: translateY(-4px); }
 }
 
 @keyframes floatLight1 {
