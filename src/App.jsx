@@ -50,7 +50,7 @@ export default function App() {
 
         <div className="card">
           We help B2B companies generate qualified leads and book meetings with decision-makers.<br /><br />
-          Our team runs the full outbound process — from targeting to qualification — so your team focuses only on closing deals.
+          We fully handle outbound so your team focuses only on closing deals.
         </div>
       </section>
 
@@ -59,12 +59,12 @@ export default function App() {
         <h2>How It Works</h2>
 
         <div className="card">
-          <b>Define ICP</b> — Target customers<br /><br />
-          <b>Outbound</b> — Campaigns<br /><br />
-          <b>Qualify</b> — Filter leads<br /><br />
-          <b>Educate</b> — Warm prospects<br /><br />
-          <b>Book</b> — Meetings<br /><br />
-          <b>Close</b> — Revenue
+          <b className="orange">1. Define ICP</b> — Target customers<br />
+          <b className="orange">2. Outreach</b> — Multi-channel campaigns<br />
+          <b className="orange">3. Qualify</b> — Filter leads<br />
+          <b className="orange">4. Educate</b> — Warm prospects<br />
+          <b className="orange">5. Book</b> — Schedule meetings<br />
+          <b className="orange">6. Close</b> — Revenue
         </div>
       </section>
 
@@ -73,14 +73,7 @@ export default function App() {
         <h2>Industries</h2>
 
         <div className="card">
-          Telecom<br />
-          SaaS<br />
-          Cybersecurity<br />
-          Cloud Services<br />
-          VoIP<br />
-          Logistics<br />
-          Internet Service Providers<br />
-          Business Mobile Plans
+          Telecom • SaaS • Cybersecurity • Cloud Services • VoIP • Logistics • ISPs • Business Mobile
         </div>
       </section>
 
@@ -90,8 +83,8 @@ export default function App() {
 
         <div className="card">
           Tailored pricing based on:<br /><br />
-          • Number of seats<br />
           • Lead volume<br />
+          • Seats capacity<br />
           • Targeting complexity<br /><br />
           Everything is aligned upfront for clarity and scale.
         </div>
@@ -101,8 +94,8 @@ export default function App() {
       <section id="guarantee" className="section">
         <h2>Guarantee</h2>
 
-        <div className="card">
-          <b>80% Minimum Show Rate Guarantee</b><br /><br />
+        <div className="card highlight">
+          <b className="orange">80% Minimum Show Rate Guarantee</b><br /><br />
           If performance drops below 80%, we compensate with extra meetings or credit.
         </div>
       </section>
@@ -123,7 +116,7 @@ export default function App() {
           <input placeholder="Email" />
           <textarea placeholder="Message"></textarea>
 
-          <button className="cta" style={{ width: "100%", marginTop: "10px" }}>
+          <button className="cta" style={{ width: "100%", marginTop: "12px" }}>
             Send Message
           </button>
         </div>
