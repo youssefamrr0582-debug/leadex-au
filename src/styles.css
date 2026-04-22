@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:wght@500;700&display=swap');
 
-/* ======================
+/* =========================
    BASE
-====================== */
+========================= */
 html {
   scroll-behavior: smooth;
 }
@@ -18,9 +18,9 @@ body {
   overflow-x: hidden;
 }
 
-/* ======================
-   LIGHTING (3D FEEL)
-====================== */
+/* =========================
+   CINEMATIC LIGHTING
+========================= */
 body::before {
   content: "";
   position: fixed;
@@ -52,9 +52,9 @@ body::after {
   z-index: 2;
 }
 
-/* ======================
+/* =========================
    NAV
-====================== */
+========================= */
 .nav {
   position: fixed;
   top: 0;
@@ -76,9 +76,9 @@ body::after {
   color: #ff7a00;
 }
 
-/* ======================
+/* =========================
    LINKS
-====================== */
+========================= */
 .links {
   display: flex;
   gap: 22px;
@@ -112,9 +112,9 @@ body::after {
   width: 100%;
 }
 
-/* ======================
+/* =========================
    HERO
-====================== */
+========================= */
 .hero {
   text-align: center;
   padding: 240px 20px 140px;
@@ -157,9 +157,9 @@ body::after {
   animation: floatGlow 10s ease-in-out infinite;
 }
 
-/* ======================
+/* =========================
    CTA
-====================== */
+========================= */
 .cta {
   display: inline-block;
   padding: 14px 34px;
@@ -177,9 +177,9 @@ body::after {
   transform: translateY(-3px);
 }
 
-/* ======================
+/* =========================
    SECTIONS
-====================== */
+========================= */
 .section {
   padding: 110px 20px;
   max-width: 980px;
@@ -193,9 +193,9 @@ body::after {
   margin-bottom: 40px;
 }
 
-/* ======================
-   CARD (ALIVE + 3D)
-====================== */
+/* =========================
+   CARD (ALIVE SYSTEM)
+========================= */
 .card {
   background: rgba(255,255,255,0.85);
   border: 1px solid rgba(0,0,0,0.06);
@@ -208,7 +208,15 @@ body::after {
   animation: cardFloat 6s ease-in-out infinite;
 }
 
-/* orange glow */
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent, rgba(255,122,0,0.08), transparent);
+  transform: translateX(-120%);
+  transition: 0.6s;
+}
+
 .card::after {
   content: "";
   position: absolute;
@@ -222,20 +230,10 @@ body::after {
   transition: 0.4s;
 }
 
-/* shine */
-.card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(120deg, transparent, rgba(255,122,0,0.08), transparent);
-  transform: translateX(-120%);
-  transition: 0.6s;
-}
-
 .card:hover {
-  transform: translateY(-10px) scale(1.02);
+  transform: translateY(-14px) scale(1.03);
+  box-shadow: 0 35px 90px rgba(0,0,0,0.08);
   border-color: rgba(255,122,0,0.35);
-  box-shadow: 0 30px 80px rgba(0,0,0,0.08);
 }
 
 .card:hover::before {
@@ -246,7 +244,6 @@ body::after {
   opacity: 1;
 }
 
-/* card text */
 .card b {
   color: #ff7a00;
   display: block;
@@ -257,9 +254,9 @@ body::after {
   color: #5a5a5a;
 }
 
-/* ======================
+/* =========================
    INPUTS
-====================== */
+========================= */
 input, textarea {
   width: 100%;
   padding: 12px;
@@ -274,9 +271,9 @@ input:focus, textarea:focus {
   border-bottom: 1px solid #ff7a00;
 }
 
-/* ======================
+/* =========================
    FOOTER
-====================== */
+========================= */
 .footer {
   text-align: center;
   padding: 70px;
@@ -284,9 +281,9 @@ input:focus, textarea:focus {
   color: #888;
 }
 
-/* ======================
+/* =========================
    ANIMATIONS
-====================== */
+========================= */
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(40px); }
   to { opacity: 1; transform: translateY(0); }
@@ -303,8 +300,8 @@ input:focus, textarea:focus {
 }
 
 @keyframes pulseOrange {
-  0%,100% { transform: translateY(0); opacity: 1; }
-  50% { transform: translateY(-3px); opacity: 0.85; }
+  0%,100% { opacity: 1; transform: translateY(0); }
+  50% { opacity: 0.85; transform: translateY(-3px); }
 }
 
 @keyframes cardFloat {
@@ -320,4 +317,20 @@ input:focus, textarea:focus {
 @keyframes floatLight2 {
   0%,100% { transform: translate(0,0) scale(1); }
   50% { transform: translate(-100px, -60px) scale(1.15); }
+}
+
+/* =========================
+   SCROLL REVEAL (JS CONTROLLED)
+========================= */
+.revealOnScroll {
+  opacity: 0;
+  transform: translateY(80px) scale(0.96);
+  filter: blur(6px);
+  transition: all 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.revealOnScroll.active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0px);
 }
