@@ -58,13 +58,20 @@ export default function App() {
       <section id="how" className="section">
         <h2>How It Works</h2>
 
-        <div className="card">
-          <b className="orange">1. Define ICP</b> — Target customers<br />
-          <b className="orange">2. Outreach</b> — Multi-channel campaigns<br />
-          <b className="orange">3. Qualify</b> — Filter leads<br />
-          <b className="orange">4. Educate</b> — Warm prospects<br />
-          <b className="orange">5. Book</b> — Schedule meetings<br />
-          <b className="orange">6. Close</b> — Revenue
+        <div className="grid">
+          {[
+            ["Define ICP", "We align on your target customers"],
+            ["Outbound", "Multi-channel outreach campaigns"],
+            ["Qualify", "Filter and verify prospects"],
+            ["Educate", "Warm up before calls"],
+            ["Book", "Schedule meetings"],
+            ["Close", "You close revenue"]
+          ].map((i, idx) => (
+            <div key={idx} className="card">
+              <b>{i[0]}</b>
+              <p>{i[1]}</p>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -72,8 +79,24 @@ export default function App() {
       <section id="industries" className="section">
         <h2>Industries</h2>
 
-        <div className="card">
-          Telecom • SaaS • Cybersecurity • Cloud Services • VoIP • Logistics • ISPs • Business Mobile
+        <div className="grid">
+          {[
+            "Telecom",
+            "SaaS",
+            "Cybersecurity",
+            "Cloud Services",
+            "VoIP",
+            "Logistics",
+            "ISPs",
+            "Business Mobile",
+            "Solar",
+            "Commercial Cleaning"
+          ].map((i, idx) => (
+            <div key={idx} className="card">
+              <b>{i}</b>
+              <p>High-quality appointment setting</p>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -85,7 +108,7 @@ export default function App() {
           Tailored pricing based on:<br /><br />
           • Lead volume<br />
           • Seats capacity<br />
-          • Targeting complexity<br /><br />
+          • Target complexity<br /><br />
           Everything is aligned upfront for clarity and scale.
         </div>
       </section>
@@ -95,7 +118,7 @@ export default function App() {
         <h2>Guarantee</h2>
 
         <div className="card highlight">
-          <b className="orange">80% Minimum Show Rate Guarantee</b><br /><br />
+          <b>80% Minimum Show Rate Guarantee</b><br /><br />
           If performance drops below 80%, we compensate with extra meetings or credit.
         </div>
       </section>
