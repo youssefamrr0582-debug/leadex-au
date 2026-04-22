@@ -46,7 +46,7 @@ export default function App() {
 
       {/* WHAT */}
       <section id="what" className="section">
-        <h2>What We Do</h2>
+        <h2 className="title">What We Do</h2>
 
         <div className="card">
           We help B2B companies generate qualified leads and book meetings with decision-makers.<br /><br />
@@ -56,7 +56,7 @@ export default function App() {
 
       {/* HOW */}
       <section id="how" className="section">
-        <h2>How It Works</h2>
+        <h2 className="title">How It Works</h2>
 
         <div className="grid">
           {[
@@ -77,7 +77,7 @@ export default function App() {
 
       {/* INDUSTRIES */}
       <section id="industries" className="section">
-        <h2>Industries</h2>
+        <h2 className="title">Industries</h2>
 
         <div className="grid">
           {[
@@ -94,7 +94,7 @@ export default function App() {
           ].map((i, idx) => (
             <div key={idx} className="card">
               <b>{i}</b>
-              <p>High-quality appointment setting</p>
+              <p>Appointment setting & lead generation</p>
             </div>
           ))}
         </div>
@@ -102,20 +102,19 @@ export default function App() {
 
       {/* PRICING */}
       <section id="pricing" className="section">
-        <h2>Pricing</h2>
+        <h2 className="title">Pricing</h2>
 
         <div className="card">
           Tailored pricing based on:<br /><br />
           • Lead volume<br />
           • Seats capacity<br />
-          • Target complexity<br /><br />
-          Everything is aligned upfront for clarity and scale.
+          • Target complexity
         </div>
       </section>
 
       {/* GUARANTEE */}
       <section id="guarantee" className="section">
-        <h2>Guarantee</h2>
+        <h2 className="title">Guarantee</h2>
 
         <div className="card highlight">
           <b>80% Minimum Show Rate Guarantee</b><br /><br />
@@ -125,7 +124,7 @@ export default function App() {
 
       {/* CONTACT */}
       <section id="contact" className="section">
-        <h2>Contact Us</h2>
+        <h2 className="title">Contact Us</h2>
 
         <div className="card">
           📞 02 7265 1399<br />
@@ -143,8 +142,6 @@ export default function App() {
             Send Message
           </button>
         </div>
-
-        <p className="subtext">We'll get back to you shortly</p>
       </section>
 
       {/* FOOTER */}
