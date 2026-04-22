@@ -8,22 +8,19 @@ export default function App() {
   useEffect(() => {
     const timer = setTimeout(() => setLoaded(true), 500);
 
-    const onScroll = () => {
-      setScrolled(window.scrollY > 40);
-    };
+    const onScroll = () => setScrolled(window.scrollY > 40);
 
     window.addEventListener("scroll", onScroll);
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("active");
-        }
+        if (entry.isIntersecting) entry.target.classList.add("active");
       });
     }, { threshold: 0.1 });
 
-    const elements = document.querySelectorAll(".revealOnScroll");
-    elements.forEach((el) => observer.observe(el));
+    document.querySelectorAll(".revealOnScroll").forEach((el) =>
+      observer.observe(el)
+    );
 
     return () => {
       clearTimeout(timer);
@@ -35,33 +32,33 @@ export default function App() {
   if (!loaded) return <div className="loader">LeadEX</div>;
 
   return (
-    <div className="app bgShapes">
+    <div className="app">
 
       {/* NAV */}
       <header className={`nav ${scrolled ? "navScrolled" : ""}`}>
         <b className="logo">LeadEX</b>
+
         <div className="links">
-          <a href="#what">What We Do</a>
-          <a href="#how">How It Works</a>
+          <a href="#what">What</a>
+          <a href="#how">How</a>
           <a href="#industries">Industries</a>
           <a href="#pricing">Pricing</a>
-          <a href="#guarantee">Guarantee</a>
           <a href="#contact">Contact</a>
         </div>
       </header>
 
       {/* HERO */}
       <section className="hero">
-        <h1 className="reveal">
+        <h1>
           Stop Chasing Leads.<br />
           <span>Start Closing Deals.</span>
         </h1>
 
-        <p className="reveal delay1">
-          We generate qualified B2B leads and book decision-maker meetings so your sales team only closes.
+        <p>
+          We generate high-quality B2B leads and book meetings with decision-makers.
         </p>
 
-        <a href="#contact" className="cta reveal delay2">
+        <a href="#contact" className="cta">
           Get Started
         </a>
       </section>
@@ -71,22 +68,22 @@ export default function App() {
         <h2>What We Do</h2>
         <div className="card">
           We help B2B companies generate qualified leads and book meetings with decision-makers.
-          <br /><br />
-          Our team handles the entire front-end sales process—from identifying the right prospects to educating them and scheduling appointments—so your team can focus on closing high-value deals.
+          Our team handles the full outbound process so your sales team only closes deals.
         </div>
       </section>
 
       {/* HOW */}
       <section id="how" className="section revealOnScroll">
         <h2>How It Works</h2>
+
         <div className="grid">
           {[
-            ["Define ICP","We align on your target customers"],
-            ["Outreach","We run personalized multi-channel campaigns"],
-            ["Qualify","We filter out unqualified prospects"],
-            ["Educate","We prepare prospects before the call"],
-            ["Book","We schedule qualified appointments"],
-            ["Close","You close the deal"]
+            ["Define ICP", "Target customers"],
+            ["Outbound", "Campaigns"],
+            ["Qualify", "Filter leads"],
+            ["Educate", "Warm prospects"],
+            ["Book", "Meetings"],
+            ["Close", "Revenue"]
           ].map((i, idx) => (
             <div key={idx} className="card hover">
               <b>{i[0]}</b>
@@ -98,12 +95,10 @@ export default function App() {
 
       {/* INDUSTRIES */}
       <section id="industries" className="section revealOnScroll">
-        <h2>Industries We Serve</h2>
+        <h2>Industries</h2>
+
         <div className="chips">
-          {[
-            "Telecom","SaaS","Cybersecurity","Logistics",
-            "Cloud Services","VoIP","Internet Service Providers","Business Mobile Plans"
-          ].map((i, idx) => (
+          {["Telecom","SaaS","Cybersecurity","Cloud","VoIP","Logistics","ISPs"].map((i, idx) => (
             <span key={idx} className="chip">{i}</span>
           ))}
         </div>
@@ -112,27 +107,19 @@ export default function App() {
       {/* PRICING */}
       <section id="pricing" className="section revealOnScroll">
         <h2>Pricing</h2>
-        <div className="card">
-          Our pricing is tailored to your needs.
-          <br /><br />
-          • Number of seats<br />
-          • Lead volume<br />
-          • Targeting complexity
-        </div>
-      </section>
 
-      {/* GUARANTEE */}
-      <section id="guarantee" className="section revealOnScroll">
-        <h2>Guarantee</h2>
-        <div className="card highlight">
-          <b>80% Minimum Show Rate Guarantee</b>
-          <p>If performance drops below 80%, we compensate with additional meetings or credit.</p>
+        <div className="card">
+          Tailored pricing based on:
+          <br /><br />
+          • Volume<br />
+          • Targeting complexity<br />
+          • Seats required
         </div>
       </section>
 
       {/* CONTACT */}
       <section id="contact" className="section revealOnScroll">
-        <h2>Contact Us</h2>
+        <h2>Contact</h2>
 
         <div className="card formCard">
 
@@ -156,6 +143,7 @@ export default function App() {
         <p className="subtext">We'll get back to you shortly</p>
       </section>
 
+      {/* FOOTER */}
       <footer className="footer">
         © 2026 LeadEX
       </footer>
