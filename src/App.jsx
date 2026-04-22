@@ -14,21 +14,9 @@ export default function App() {
 
     window.addEventListener("scroll", onScroll);
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("active");
-        }
-      });
-    }, { threshold: 0.1 });
-
-    const elements = document.querySelectorAll(".revealOnScroll");
-    elements.forEach((el) => observer.observe(el));
-
     return () => {
       clearTimeout(timer);
       window.removeEventListener("scroll", onScroll);
-      observer.disconnect();
     };
   }, []);
 
@@ -55,24 +43,22 @@ export default function App() {
 
       {/* HERO */}
       <section className="hero">
-        <h1 className="reveal">
+        <h1>
           Stop Chasing Leads.<br />
           <span>Start Closing Deals.</span>
         </h1>
 
-        <p className="reveal delay1">
+        <p>
           We generate qualified B2B leads and book decision-maker meetings so your sales team only closes.
         </p>
 
-        <a href="#contact" className="cta reveal delay2">
+        <a href="#contact" className="cta">
           Get Started
         </a>
-
-        <div className="glow"></div>
       </section>
 
       {/* WHAT */}
-      <section id="what" className="section revealOnScroll">
+      <section id="what" className="section">
         <h2>What We Do</h2>
 
         <div className="card">
@@ -83,64 +69,76 @@ export default function App() {
       </section>
 
       {/* HOW */}
-      <section id="how" className="section revealOnScroll">
+      <section id="how" className="section">
         <h2>How It Works</h2>
 
         <div className="grid">
-          {[
-            ["Define Your Ideal Customer Profile", "We align on your target customers"],
-            ["Outreach", "We run personalized multi-channel campaigns"],
-            ["Qualify", "We filter out unqualified prospects"],
-            ["Educate", "We prepare prospects before the call"],
-            ["Book", "We schedule qualified appointments"],
-            ["Close", "You close the deal"]
-          ].map((i) => (
-            <div key={i[0]} className="card hover">
-              <b>{i[0]}</b>
-              <p>{i[1]}</p>
-            </div>
-          ))}
+          <div className="card hover">
+            <b>Define Your Ideal Customer Profile</b>
+            <p>We align on your target customers</p>
+          </div>
+
+          <div className="card hover">
+            <b>Outreach</b>
+            <p>We run personalized multi-channel campaigns</p>
+          </div>
+
+          <div className="card hover">
+            <b>Qualify</b>
+            <p>We filter out unqualified prospects</p>
+          </div>
+
+          <div className="card hover">
+            <b>Educate</b>
+            <p>We prepare prospects before the call</p>
+          </div>
+
+          <div className="card hover">
+            <b>Book</b>
+            <p>We schedule qualified appointments</p>
+          </div>
+
+          <div className="card hover">
+            <b>Close</b>
+            <p>You close the deal</p>
+          </div>
         </div>
       </section>
 
       {/* INDUSTRIES */}
-      <section id="industries" className="section revealOnScroll">
+      <section id="industries" className="section">
         <h2>Industries We Serve</h2>
 
         <div className="chips">
-          {[
-            "Telecom",
-            "SaaS",
-            "Cybersecurity",
-            "Logistics",
-            "Cloud Services",
-            "VoIP",
-            "Internet Service Providers",
-            "Business Mobile Plans"
-          ].map((i) => (
-            <span key={i} className="chip">{i}</span>
-          ))}
+          <span className="chip">Telecom</span>
+          <span className="chip">SaaS</span>
+          <span className="chip">Cybersecurity</span>
+          <span className="chip">Logistics</span>
+          <span className="chip">Cloud Services</span>
+          <span className="chip">VoIP</span>
+          <span className="chip">Internet Service Providers</span>
+          <span className="chip">Business Mobile Plans</span>
         </div>
       </section>
 
       {/* PRICING */}
-      <section id="pricing" className="section revealOnScroll">
+      <section id="pricing" className="section">
         <h2>Pricing</h2>
 
         <div className="card">
           Our pricing is tailored to your needs.
           <br /><br />
           It depends on:
-          <br />• Number of seats
-          <br />• Lead volume
-          <br />• Targeting complexity
+          <br />• Number of seats  
+          <br />• Lead volume  
+          <br />• Targeting complexity  
           <br /><br />
           We align everything upfront for clear expectations and scalable results.
         </div>
       </section>
 
       {/* GUARANTEE */}
-      <section id="guarantee" className="section revealOnScroll">
+      <section id="guarantee" className="section">
         <h2>Guarantee</h2>
 
         <div className="card highlight">
@@ -150,7 +148,7 @@ export default function App() {
       </section>
 
       {/* CONTACT */}
-      <section id="contact" className="section revealOnScroll">
+      <section id="contact" className="section">
         <h2>Contact Us</h2>
 
         <div className="card">
@@ -158,7 +156,7 @@ export default function App() {
           ✉️ info@lea-dex.com
         </div>
 
-        <p style={{ marginTop: "20px", color: "#888" }}>
+        <p className="subtext">
           We'll get back to you shortly
         </p>
       </section>
